@@ -1,0 +1,61 @@
+.main {
+  width: 100%;
+  padding: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+  box-sizing: border-box;
+  justify-content: start;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerElements {
+  display: flex;
+  column-gap: 0.4rem;
+}
+
+.isMandatory {
+  color: red;
+}
+
+.info-container {
+  position: relative;
+}
+
+.info {
+  display: none;
+  position: absolute;
+  background-color: white;
+  top: 7px;
+  right: 7px;
+  padding: 0.2rem 0.4rem;
+  border: 0.1px solid black;
+  border-radius: 2px;
+  z-index: 4;
+}
+
+.info-container:hover {
+  .info {
+    display: block;
+  }
+}
+
+.container {
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 4px;
+  display: flex;
+  column-gap: 0.4rem;
+  box-sizing: border-box;
+}
+
+input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
