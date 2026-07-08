@@ -1,8 +1,17 @@
+.container {
+  width: 100%;
+  padding: 0.2rem;
+  box-sizing: border-box;
+}
+
 .btn {
   width: 100%;
   background-color: var(--primary-bg);
   border: 1px solid var(--primary-color);
-  color: var(--text-color);
+  /* color: var(--text-color); */
+  color: white;
   font-size: var(--font-size);
-  padding: 1rem;
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  box-sizing: border-box;
 }

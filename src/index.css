@@ -5,14 +5,14 @@
 }
 
 :root {
-  --primary-color: green;
-  --primary-bg: black;
-  --font-size: 14px;
-  --text-color: green;
+  --primary-color: black;
+  --primary-bg: rgb(10, 63, 161);
+  --font-size: 18px;
+  --text-color: black;
 }
 
 #root {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(54, 54, 54);
+  background-color: rgb(121, 121, 121);
 }

@@ -1,16 +1,28 @@
 import "./btn.css";
 
-function ButtonLib({ text, eventEmiiter }: any) {
+export class Btn {
+  public label: string = "";
+  constructor(label: string) {
+    this.label = label;
+  }
+}
+
+interface BtnProps {
+  btn: Btn;
+  eventHandler: () => void;
+}
+
+export function ButtonLib({ btn, eventHandler }: BtnProps) {
   return (
     <>
-      <button className="btn" onClick={() => eventEmiiter()}>
-        {text}
-      </button>
+      <div className="container">
+        <button className="btn" onClick={() => eventHandler()}>
+          {btn.label}
+        </button>
+      </div>
     </>
   );
 }
-
-export default ButtonLib;
 
 /*
 like @input() in angular 
@@ -28,7 +40,5 @@ to render value use "state" -> Variable and to update we use "setState" -> funct
  in angular we use [(ngModel)]="value"
 
  useEffect() => ngOnInit()
- run when the main function called 
-
-
+ runs when the main function called 
 */
