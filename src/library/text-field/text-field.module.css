@@ -22,7 +22,7 @@
   color: red;
 }
 
-.info-container {
+.info_container {
   position: relative;
 }
 
@@ -38,7 +38,7 @@
   z-index: 4;
 }
 
-.info-container:hover {
+.info_container:hover {
   .info {
     display: block;
   }
@@ -47,6 +47,7 @@
 .container {
   width: 100%;
   border: 2px solid black;
+  padding: 0.2rem;
   border-radius: 4px;
   display: flex;
   column-gap: 0.4rem;

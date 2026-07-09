@@ -1,71 +1,9 @@
 import { useState } from 'react';
-import './text-field.css';
+import styles from './text-field.module.css';
+import { Icon } from '../constants';
+import type { IconType } from '../constants';
 
 type InputType = 'text' | 'password' | 'number' | 'email';
-
-export const Icon = {
-  // User
-  User: 'fa-solid fa-user',
-  Users: 'fa-solid fa-users',
-  UserPlus: 'fa-solid fa-user-plus',
-  // Search
-  Search: 'fa-solid fa-magnifying-glass',
-  SearchPlus: 'fa-solid fa-magnifying-glass-plus',
-  SearchMinus: 'fa-solid fa-magnifying-glass-minus',
-  // Authentication
-  Lock: 'fa-solid fa-lock',
-  Unlock: 'fa-solid fa-lock-open',
-  Key: 'fa-solid fa-key',
-  Eye: 'fa-solid fa-eye',
-  EyeSlash: 'fa-solid fa-eye-slash',
-  // Edit
-  Pen: 'fa-solid fa-pen',
-  Pencil: 'fa-solid fa-pencil',
-  Edit: 'fa-solid fa-pen-to-square',
-  Eraser: 'fa-solid fa-eraser',
-  // Email
-  Mail: 'fa-solid fa-envelope',
-  MailOpen: 'fa-solid fa-envelope-open',
-  PaperPlane: 'fa-solid fa-paper-plane',
-  // Files
-  File: 'fa-solid fa-file',
-  FileText: 'fa-solid fa-file-lines',
-  Folder: 'fa-solid fa-folder',
-  FolderOpen: 'fa-solid fa-folder-open',
-  // Actions
-  Plus: 'fa-solid fa-plus',
-  Minus: 'fa-solid fa-minus',
-  Check: 'fa-solid fa-check',
-  XMark: 'fa-solid fa-xmark',
-  Trash: 'fa-solid fa-trash',
-  Download: 'fa-solid fa-download',
-  Upload: 'fa-solid fa-upload',
-  Refresh: 'fa-solid fa-rotate-right',
-  // Navigation
-  Home: 'fa-solid fa-house',
-  Menu: 'fa-solid fa-bars',
-  ArrowLeft: 'fa-solid fa-arrow-left',
-  ArrowRight: 'fa-solid fa-arrow-right',
-  ArrowUp: 'fa-solid fa-arrow-up',
-  ArrowDown: 'fa-solid fa-arrow-down',
-  // Communication
-  Phone: 'fa-solid fa-phone',
-  Mobile: 'fa-solid fa-mobile-screen',
-  Message: 'fa-solid fa-message',
-  Bell: 'fa-solid fa-bell',
-  // Date & Time
-  Calendar: 'fa-solid fa-calendar',
-  Clock: 'fa-solid fa-clock',
-  // Misc
-  Heart: 'fa-solid fa-heart',
-  Star: 'fa-solid fa-star',
-  Bookmark: 'fa-solid fa-bookmark',
-  Settings: 'fa-solid fa-gear',
-  Info: 'fa-solid fa-circle-info',
-  Warning: 'fa-solid fa-triangle-exclamation',
-} as const;
-
-export type Icon = (typeof Icon)[keyof typeof Icon];
 
 export class TextField {
   public label: string = '';
@@ -73,7 +11,7 @@ export class TextField {
   public value: string = '';
   public type: InputType = 'text';
   public isMandatory: boolean = false;
-  public icon: Icon | null = null;
+  public icon: IconType | null = null;
   public infoText: string = '';
   constructor(label: string = '', placeholder: string = '', value: string = '', type: InputType = 'text') {
     this.label = label;
@@ -84,7 +22,7 @@ export class TextField {
   setValue(value: string) {
     this.value = value;
   }
-  setIcon(icon: Icon) {
+  setIcon(icon: IconType) {
     this.icon = icon;
   }
   setIsMandatory(isMandatory: boolean) {
@@ -114,15 +52,15 @@ export function TextFieldLib({ tf }: TfProps) {
 
   let mandatoryHtml = null;
   if (tf.isMandatory) {
-    mandatoryHtml = <div className="isMandatory">*</div>;
+    mandatoryHtml = <div className={styles.isMandatory}>*</div>;
   }
 
   let infoHtml = null;
   if (tf.infoText.length > 0) {
     infoHtml = (
-      <div className="info-container">
+      <div className={styles.info_container}>
         <i className={Icon.Info}></i>
-        <div className="info">{tf.infoText}</div>
+        <div className={styles.info}>{tf.infoText}</div>
       </div>
     );
   }
@@ -130,7 +68,7 @@ export function TextFieldLib({ tf }: TfProps) {
   let headerElements = null;
   if (mandatoryHtml || infoHtml) {
     headerElements = (
-      <div className="headerElements">
+      <div className={styles.headerElements}>
         {mandatoryHtml}
         {infoHtml}
       </div>
@@ -173,12 +111,12 @@ export function TextFieldLib({ tf }: TfProps) {
 
   return (
     <>
-      <div className="main">
-        <div className="header">
+      <div className={styles.main}>
+        <div className={styles.header}>
           {labelHtml}
           {headerElements}
         </div>
-        <div className="container">
+        <div className={styles.container}>
           {iconHtml}
           {tfHtml}
           {passwordHtml}

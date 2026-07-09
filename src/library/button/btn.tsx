@@ -1,4 +1,4 @@
-import "./btn.css";
+import styles from "./btn.module.css";
 
 export class Btn {
   public label: string = "";
@@ -6,7 +6,6 @@ export class Btn {
     this.label = label;
   }
 }
-
 interface BtnProps {
   btn: Btn;
   eventHandler: () => void;
@@ -15,8 +14,8 @@ interface BtnProps {
 export function ButtonLib({ btn, eventHandler }: BtnProps) {
   return (
     <>
-      <div className="container">
-        <button className="btn" onClick={() => eventHandler()}>
+      <div className={styles.container}>
+        <button className={styles.btn} onClick={() => eventHandler()}>
           {btn.label}
         </button>
       </div>
