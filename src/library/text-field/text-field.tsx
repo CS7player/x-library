@@ -33,34 +33,34 @@ export class TextField {
   }
 }
 
-interface TfProps {
-  tf: TextField;
+interface TextFieldProperties {
+  textfield: TextField;
 }
 
-export function TextFieldLib({ tf }: TfProps) {
-  const [value, valueUpdater] = useState(tf.value);
+export function TextFieldLib({ textfield }: TextFieldProperties) {
+  const [value, valueUpdater] = useState(textfield.value);
   const [isPassword, setPassword] = useState(true);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     valueUpdater(e.target.value);
-    tf.setValue?.(e.target.value);
+    textfield.setValue?.(e.target.value);
   };
 
   let labelHtml = null;
-  if (tf.label.length > 0) {
-    labelHtml = <div>{tf.label}</div>;
+  if (textfield.label.length > 0) {
+    labelHtml = <div>{textfield.label}</div>;
   }
 
   let mandatoryHtml = null;
-  if (tf.isMandatory) {
+  if (textfield.isMandatory) {
     mandatoryHtml = <div className={styles.isMandatory}>*</div>;
   }
 
   let infoHtml = null;
-  if (tf.infoText.length > 0) {
+  if (textfield.infoText.length > 0) {
     infoHtml = (
       <div className={styles.info_container}>
         <i className={Icon.Info}></i>
-        <div className={styles.info}>{tf.infoText}</div>
+        <div className={styles.info}>{textfield.infoText}</div>
       </div>
     );
   }
@@ -76,32 +76,32 @@ export function TextFieldLib({ tf }: TfProps) {
   }
 
   let iconHtml = null;
-  if (tf.icon != null) {
-    iconHtml = <i className={tf.icon}></i>;
+  if (textfield.icon != null) {
+    iconHtml = <i className={textfield.icon}></i>;
   }
 
   let tfHtml = null;
-  switch (tf.type) {
+  switch (textfield.type) {
     case 'text': {
-      tfHtml = <input type="text" value={value} placeholder={tf.placeholder} onChange={handleChange} />;
+      tfHtml = <input type="text" value={value} placeholder={textfield.placeholder} onChange={handleChange} />;
       break;
     }
     case 'email': {
-      tfHtml = <input type="text" value={value} placeholder={tf.placeholder} onChange={handleChange} />;
+      tfHtml = <input type="text" value={value} placeholder={textfield.placeholder} onChange={handleChange} />;
       break;
     }
     case 'number': {
-      tfHtml = <input type="number" value={value} placeholder={tf.placeholder} onChange={handleChange} />;
+      tfHtml = <input type="number" value={value} placeholder={textfield.placeholder} onChange={handleChange} />;
       break;
     }
     case 'password': {
-      tfHtml = <input type={isPassword ? 'password' : 'text'} value={value} placeholder={tf.placeholder} onChange={handleChange} />;
+      tfHtml = <input type={isPassword ? 'password' : 'text'} value={value} placeholder={textfield.placeholder} onChange={handleChange} />;
       break;
     }
   }
 
   let passwordHtml = null;
-  if (tf.type == 'password') {
+  if (textfield.type == 'password') {
     if (isPassword) {
       passwordHtml = <i className={Icon.Eye} onClick={() => setPassword(false)}></i>;
     } else {

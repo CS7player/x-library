@@ -1,5 +1,5 @@
 import './App.css';
-import { Btn, ButtonLib, Icon, TextField, TextFieldLib } from './library';
+import { Button, ButtonLib, Icon, TextField, TextFieldLib } from './library';
 
 function App() {
   let username: TextField = new TextField('username', 'Enter the Username', '');
@@ -7,7 +7,9 @@ function App() {
   username.setIcon(Icon.User);
   username.setIsMandatory(true);
   username.setInfoText('Testing information box');
-  let printBtn: Btn = new Btn('Print');
+  let printBtn: Button = new Button('Print');
+  printBtn.setStartIcon(Icon.Bell)
+  printBtn.setEndIcon(Icon.Bell)
   const printer = () => {
     console.log(username.value);
     console.log(testing.value);
@@ -15,9 +17,9 @@ function App() {
   return (
     <>
       <div>
-        <TextFieldLib tf={username} />
-        <TextFieldLib tf={testing} />
-        <ButtonLib btn={printBtn} eventHandler={printer} />
+        <TextFieldLib textfield={username} />
+        <TextFieldLib textfield={testing} />
+        <ButtonLib button={printBtn} eventHandler={printer} />
       </div>
     </>
   );

@@ -1,0 +1,49 @@
+This file for Angular user to understand the react!!!
+
+ --------------------------------------------------------------------------------------------
+ Topic              |           Angular               |            React                 |
+ -------------------------------------------------------------------------------------------
+ structure          |        html,ts,css              |    tsx -> (html + ts), css       |
+ (component)        |                                 |                                  |
+ ------------------------------------------------------------------------------------------
+ rendering          |   html page will render. when   |  we call the function in html    |
+                    |   we call it as child component |  which return html content       |
+ ------------------------------------------------------------------------------------------
+ two way binding    |  we use FormModule([(ngModel)]) |    useState                      |
+                    |  [(ngModel)]="value"            |const [state, setState] =         |
+                    |                                 |  useState(initialValue);         |
+ ------------------------------------------------------------------------------------------
+   inital method    |       ngOnInit()                |     useEffect() =>               |
+ ------------------------------------------------------------------------------------------
+   send data to     |         @input()                | we pass the value in child       |
+   child component  |  we pass the value in child     |  component  tag only   but we    |
+                    |  component  tag only   but we   |  receive them as the paramter    |
+                    |   thorugh @Input()  variable    |  in the main function            |
+ ------------------------------------------------------------------------------------------
+  getting data or   |  @output()                      |  in react we pass the callBack   |
+  trigger from the  |  we listen the data through     |  function as the parameter       |
+  child Component   |   the attribute only            |  to main method to trigger       |
+ ------------------------------------------------------------------------------------------
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+                    |                                 |                                  |
+
+
+
+like @output() in angular 
+in react we use output as callback function we direct pass the function 
+as attrubute to the child component
+
+

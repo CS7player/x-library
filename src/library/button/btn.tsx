@@ -1,43 +1,44 @@
-import styles from "./btn.module.css";
-
-export class Btn {
-  public label: string = "";
+import styles from './btn.module.css';
+import type { IconType } from '../constants';
+export class Button {
+  public label: string = '';
+  public startIcon: IconType | null = null;
+  public endIcon: IconType | null = null;
   constructor(label: string) {
     this.label = label;
   }
+  setStartIcon(icon: IconType) {
+    this.startIcon = icon;
+  }
+  setEndIcon(icon: IconType) {
+    this.endIcon = icon;
+  }
 }
-interface BtnProps {
-  btn: Btn;
+interface ButtonProperties {
+  button: Button;
   eventHandler: () => void;
 }
 
-export function ButtonLib({ btn, eventHandler }: BtnProps) {
+export function ButtonLib({ button, eventHandler }: ButtonProperties) {
+  let startIconHtml = null;
+  if (button.startIcon != null) {
+    startIconHtml = <i className={button.startIcon}></i>;
+  }
+  let endIconHtml = null;
+  if (button.endIcon != null) {
+    endIconHtml = <i className={button.endIcon}></i>;
+  }
   return (
     <>
       <div className={styles.container}>
         <button className={styles.btn} onClick={() => eventHandler()}>
-          {btn.label}
+          <div>
+            {startIconHtml}
+            {button.label}
+            {endIconHtml}
+          </div>
         </button>
       </div>
     </>
   );
 }
-
-/*
-like @input() in angular 
-we pass the value in child component in attribute tag only
-but we receive them as the paramter in the main function
-
-like @output() in angular 
-in react we use output as callback function we direct pass the function 
-as attrubute to the child component
-
-like FormModule (two way binding) we use => useState
-React components don't automatically remember variable values between renders.
-Syntax :- const [state, setState] = useState(initialValue);
-to render value use "state" -> Variable and to update we use "setState" -> function 
- in angular we use [(ngModel)]="value"
-
- useEffect() => ngOnInit()
- runs when the main function called 
-*/
