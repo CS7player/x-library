@@ -1,0 +1,17 @@
+:root {
+  /*custom-components*/
+  --bg-color: #ffffff;
+  --font-color: #000000;
+  --border-color: #000000;
+  --border-focus-color: #123456;
+  --bg-disabled: #a3a3a3;
+  --label-size: 16px;
+  --label-weight: 600;
+  --content-size: 14px;
+  --content-weight: 400;
+  --min-padding: 0.2rem;
+  --border-radius: 0.2rem;
+
+  --success-color: #2cca46;
+  --danger-color: #e42b2b;
+}

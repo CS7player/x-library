@@ -1,6 +1,6 @@
 import styles from './checkbox.module.css';
 
-export class Checkbox {
+export class CheckBox {
   public label: string = '';
   constructor(label: string = '') {
     this.label = label;
@@ -8,7 +8,7 @@ export class Checkbox {
 }
 
 interface CheckBoxProperties {
-  checkbox: Checkbox;
+  checkbox: CheckBox;
 }
 
 export function CheckBoxLib({ checkbox }: CheckBoxProperties) {

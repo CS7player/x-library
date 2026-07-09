@@ -9,6 +9,7 @@ export class TextField {
   public label: string = '';
   public placeholder: string = '';
   public value: string = '';
+  public disabled: boolean = false;
   public type: InputType = 'text';
   public isMandatory: boolean = false;
   public icon: IconType | null = null;
@@ -21,6 +22,9 @@ export class TextField {
   }
   setValue(value: string) {
     this.value = value;
+  }
+  setDisabled(disabled: boolean) {
+    this.disabled = disabled;
   }
   setIcon(icon: IconType) {
     this.icon = icon;
@@ -41,8 +45,10 @@ export function TextFieldLib({ textfield }: TextFieldProperties) {
   const [value, valueUpdater] = useState(textfield.value);
   const [isPassword, setPassword] = useState(true);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    valueUpdater(e.target.value);
-    textfield.setValue?.(e.target.value);
+    if (!textfield.disabled) {
+      valueUpdater(e.target.value);
+      textfield.setValue?.(e.target.value);
+    }
   };
 
   let labelHtml = null;
@@ -116,7 +122,7 @@ export function TextFieldLib({ textfield }: TextFieldProperties) {
           {labelHtml}
           {headerElements}
         </div>
-        <div className={styles.container}>
+        <div className={`${styles.container} ${textfield.disabled ? styles.disabled : ''}`}>
           {iconHtml}
           {tfHtml}
           {passwordHtml}

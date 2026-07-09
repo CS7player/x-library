@@ -1,6 +1,6 @@
 .main {
   width: 100%;
-  padding: 0.2rem;
+  padding: var(--min-padding);
   display: flex;
   flex-direction: column;
   row-gap: 0.4rem;
@@ -11,6 +11,8 @@
 .header {
   display: flex;
   justify-content: space-between;
+  font-size: var(--label-size);
+  font-weight: var(--label-weight);
 }
 
 .headerElements {
@@ -19,22 +21,25 @@
 }
 
 .isMandatory {
-  color: red;
+  color: var(--danger-color);
 }
 
 .info_container {
   position: relative;
+  cursor: pointer;
 }
 
 .info {
   display: none;
   position: absolute;
-  background-color: white;
+  background-color: var(--bg-color);
   top: 7px;
   right: 7px;
   padding: 0.2rem 0.4rem;
-  border: 0.1px solid black;
-  border-radius: 2px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: var(--content-size);
+  font-weight: var(--content-weight);
   z-index: 4;
 }
 
@@ -46,12 +51,29 @@
 
 .container {
   width: 100%;
-  border: 2px solid black;
-  padding: 0.2rem;
-  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  padding: var(--min-padding);
+  border-radius: var(--border-radius);
   display: flex;
   column-gap: 0.4rem;
   box-sizing: border-box;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.container:focus-within {
+  border-color: var(--border-focus-color);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 15%);
+}
+
+.disabled {
+  background-color: var(--bg-disabled);
+  cursor: not-allowed;
+  > input{
+   cursor: not-allowed;
+  }
 }
 
 input {

@@ -2,10 +2,14 @@ import styles from './btn.module.css';
 import type { IconType } from '../constants';
 export class Button {
   public label: string = '';
+  public disabled: boolean = false;
   public startIcon: IconType | null = null;
   public endIcon: IconType | null = null;
   constructor(label: string) {
     this.label = label;
+  }
+  setDisabled(disabled: boolean) {
+    this.disabled = disabled;
   }
   setStartIcon(icon: IconType) {
     this.startIcon = icon;
@@ -20,6 +24,12 @@ interface ButtonProperties {
 }
 
 export function ButtonLib({ button, eventHandler }: ButtonProperties) {
+  const handleClick = () => {
+    if (!button.disabled) {
+      eventHandler();
+    }
+  };
+
   let startIconHtml = null;
   if (button.startIcon != null) {
     startIconHtml = <i className={button.startIcon}></i>;
@@ -30,9 +40,9 @@ export function ButtonLib({ button, eventHandler }: ButtonProperties) {
   }
   return (
     <>
-      <div className={styles.container}>
-        <button className={styles.btn} onClick={() => eventHandler()}>
-          <div>
+      <div className={`${styles.container} ${button.disabled ? styles.disabled : ''}`}>
+        <button className={styles.button} onClick={() => handleClick()}>
+          <div className={styles.box}>
             {startIconHtml}
             {button.label}
             {endIconHtml}
