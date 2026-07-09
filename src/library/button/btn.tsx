@@ -25,9 +25,8 @@ interface ButtonProperties {
 
 export function ButtonLib({ button, eventHandler }: ButtonProperties) {
   const handleClick = () => {
-    if (!button.disabled) {
-      eventHandler();
-    }
+    if (button.disabled) return;
+    eventHandler();
   };
 
   let startIconHtml = null;

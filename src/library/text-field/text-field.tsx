@@ -45,10 +45,9 @@ export function TextFieldLib({ textfield }: TextFieldProperties) {
   const [value, valueUpdater] = useState(textfield.value);
   const [isPassword, setPassword] = useState(true);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!textfield.disabled) {
-      valueUpdater(e.target.value);
-      textfield.setValue?.(e.target.value);
-    }
+    if (textfield.disabled) return;
+    valueUpdater(e.target.value);
+    textfield.setValue?.(e.target.value);
   };
 
   let labelHtml = null;

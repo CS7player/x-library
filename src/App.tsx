@@ -1,5 +1,5 @@
 import './App.css';
-import { Button, ButtonLib, Icon, TextField, TextFieldLib } from './library';
+import { Button, ButtonLib, CheckBox, CheckBoxLib, Icon, TextField, TextFieldLib } from './library';
 
 function App() {
   let username: TextField = new TextField('username', 'Enter the Username', 'Chandra');
@@ -9,11 +9,21 @@ function App() {
   username.setInfoText('Testing information box');
   username.setDisabled(true);
   let printBtn: Button = new Button('Print');
-  printBtn.setStartIcon(Icon.Bell)
-  printBtn.setEndIcon(Icon.Bell)
-  const printer = () => {
+  printBtn.setStartIcon(Icon.Bell);
+  printBtn.setEndIcon(Icon.Bell);
+
+  let cbOptions = { labelKey: 'name', valueKey: 'id' };
+  let cbArray = [
+    { id: 1, name: 'orange' },
+    { id: 2, name: 'apple' },
+    { id: 3, name: 'banana' },
+  ];
+  let cbObj :CheckBox = new CheckBox("test",cbOptions,cbArray,[3,2],true);
+  cbObj.setDisabled(true)
+  cbObj.setInfoText("tesing checkbox")
+    const printer = () => {
     console.log(username.value);
-    console.log(testing.value);
+    console.log(cbObj.selectedValues);
   };
   return (
     <>
@@ -21,6 +31,7 @@ function App() {
         <TextFieldLib textfield={username} />
         <TextFieldLib textfield={testing} />
         <ButtonLib button={printBtn} eventHandler={printer} />
+        <CheckBoxLib checkbox={cbObj}/>
       </div>
     </>
   );
