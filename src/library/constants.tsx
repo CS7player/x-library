@@ -1,4 +1,3 @@
-
 export const Icon = {
   // User
   User: 'fa-solid fa-user',
@@ -40,10 +39,10 @@ export const Icon = {
   // Navigation
   Home: 'fa-solid fa-house',
   Menu: 'fa-solid fa-bars',
-  ArrowLeft: 'fa-solid fa-arrow-left',
-  ArrowRight: 'fa-solid fa-arrow-right',
-  ArrowUp: 'fa-solid fa-arrow-up',
-  ArrowDown: 'fa-solid fa-arrow-down',
+  ArrowLeft: 'fa-solid fa-chevron-left',
+  ArrowRight: 'fa-solid fa-chevron-right',
+  ArrowUp: 'fa-solid fa-chevron-up',
+  ArrowDown: 'fa-solid fa-chevron-down',
   // Communication
   Phone: 'fa-solid fa-phone',
   Mobile: 'fa-solid fa-mobile-screen',

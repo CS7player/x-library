@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './text-field.module.css';
 import { Icon } from '../constants';
 import type { IconType } from '../constants';
+import { LabelHeader, LabelHeaderLib } from '..';
 
 type InputType = 'text' | 'password' | 'number' | 'email';
 
@@ -49,36 +50,8 @@ export function TextFieldLib({ textfield }: TextFieldProperties) {
     valueUpdater(e.target.value);
     textfield.setValue?.(e.target.value);
   };
-
-  let labelHtml = null;
-  if (textfield.label.length > 0) {
-    labelHtml = <div>{textfield.label}</div>;
-  }
-
-  let mandatoryHtml = null;
-  if (textfield.isMandatory) {
-    mandatoryHtml = <div className={styles.isMandatory}>*</div>;
-  }
-
-  let infoHtml = null;
-  if (textfield.infoText.length > 0) {
-    infoHtml = (
-      <div className={styles.info_container}>
-        <i className={Icon.Info}></i>
-        <div className={styles.info}>{textfield.infoText}</div>
-      </div>
-    );
-  }
-
-  let headerElements = null;
-  if (mandatoryHtml || infoHtml) {
-    headerElements = (
-      <div className={styles.headerElements}>
-        {mandatoryHtml}
-        {infoHtml}
-      </div>
-    );
-  }
+  
+  let labelHeader: LabelHeader = new LabelHeader(textfield.label, textfield.isMandatory, textfield.infoText);
 
   let iconHtml = null;
   if (textfield.icon != null) {
@@ -117,10 +90,7 @@ export function TextFieldLib({ textfield }: TextFieldProperties) {
   return (
     <>
       <div className={styles.main}>
-        <div className={styles.header}>
-          {labelHtml}
-          {headerElements}
-        </div>
+        <LabelHeaderLib labelHeader={labelHeader} />
         <div className={`${styles.container} ${textfield.disabled ? styles.disabled : ''}`}>
           {iconHtml}
           {tfHtml}

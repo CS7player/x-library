@@ -1,6 +1,6 @@
 import styles from './checkbox.module.css';
-import { Icon } from '../constants';
 import { useState } from 'react';
+import { LabelHeaderLib, LabelHeader } from '..';
 interface CheckBoxOptions {
   labelKey: string;
   valueKey: string | number;
@@ -49,41 +49,13 @@ export function CheckBoxLib({ checkbox }: CheckBoxProperties) {
     valueUpdater(updated);
     checkbox.setValue(updated);
   };
-  let labelHtml = null;
-  if (checkbox.label.length > 0) {
-    labelHtml = <div>{checkbox.label}</div>;
-  }
-  let mandatoryHtml = null;
-  if (checkbox.isMandatory) {
-    mandatoryHtml = <div className={styles.isMandatory}>*</div>;
-  }
 
-  let infoHtml = null;
-  if (checkbox.infoText.length > 0) {
-    infoHtml = (
-      <div className={styles.info_container}>
-        <i className={Icon.Info}></i>
-        <div className={styles.info}>{checkbox.infoText}</div>
-      </div>
-    );
-  }
+  let labelHeader: LabelHeader = new LabelHeader(checkbox.label, checkbox.isMandatory, checkbox.infoText);
 
-  let headerElements = null;
-  if (mandatoryHtml || infoHtml) {
-    headerElements = (
-      <div className={styles.headerElements}>
-        {mandatoryHtml}
-        {infoHtml}
-      </div>
-    );
-  }
   return (
     <>
       <div className={styles.main}>
-        <div className={styles.header}>
-          {labelHtml}
-          {headerElements}
-        </div>
+        <LabelHeaderLib labelHeader={labelHeader} />
         <div className={styles.container}>
           {checkbox.checkBoxArray.map((ele) => (
             <div key={String(ele[checkbox.checkBoxOptions.valueKey])} className={`${styles.checkbox_container} ${checkbox.disabled ? styles.disabled : ''}`}>

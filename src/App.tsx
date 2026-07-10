@@ -1,5 +1,5 @@
 import './App.css';
-import { Button, ButtonLib, CheckBox, CheckBoxLib, Icon, TextField, TextFieldLib } from './library';
+import { Button, ButtonLib, CheckBox, CheckBoxLib, DatePicker, DatePickerLib, Icon, TextField, TextFieldLib } from './library';
 
 function App() {
   let username: TextField = new TextField('username', 'Enter the Username', 'Chandra');
@@ -21,6 +21,7 @@ function App() {
   let cbObj :CheckBox = new CheckBox("test",cbOptions,cbArray,[3,2],true);
   cbObj.setDisabled(true)
   cbObj.setInfoText("tesing checkbox")
+  let todayDate = new DatePicker("Today","",true);
     const printer = () => {
     console.log(username.value);
     console.log(cbObj.selectedValues);
@@ -32,6 +33,7 @@ function App() {
         <TextFieldLib textfield={testing} />
         <ButtonLib button={printBtn} eventHandler={printer} />
         <CheckBoxLib checkbox={cbObj}/>
+        <DatePickerLib datepicker={todayDate}/>
       </div>
     </>
   );
