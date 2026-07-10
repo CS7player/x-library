@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styles from './text-field.module.css';
-import { Icon } from '../constants';
-import type { IconType } from '../constants';
+import { Icons } from '..';
 import { LabelHeader, LabelHeaderLib } from '..';
 
 type InputType = 'text' | 'password' | 'number' | 'email';
@@ -13,7 +12,7 @@ export class TextField {
   public disabled: boolean = false;
   public type: InputType = 'text';
   public isMandatory: boolean = false;
-  public icon: IconType | null = null;
+  public icon: React.JSX.Element | null = null;
   public infoText: string = '';
   constructor(label: string = '', placeholder: string = '', value: string = '', type: InputType = 'text') {
     this.label = label;
@@ -27,7 +26,7 @@ export class TextField {
   setDisabled(disabled: boolean) {
     this.disabled = disabled;
   }
-  setIcon(icon: IconType) {
+  setIcon(icon: React.JSX.Element) {
     this.icon = icon;
   }
   setIsMandatory(isMandatory: boolean) {
@@ -50,13 +49,8 @@ export function TextFieldLib({ textfield }: TextFieldProperties) {
     valueUpdater(e.target.value);
     textfield.setValue?.(e.target.value);
   };
-  
-  let labelHeader: LabelHeader = new LabelHeader(textfield.label, textfield.isMandatory, textfield.infoText);
 
-  let iconHtml = null;
-  if (textfield.icon != null) {
-    iconHtml = <i className={textfield.icon}></i>;
-  }
+  let labelHeader: LabelHeader = new LabelHeader(textfield.label, textfield.isMandatory, textfield.infoText);
 
   let tfHtml = null;
   switch (textfield.type) {
@@ -81,9 +75,17 @@ export function TextFieldLib({ textfield }: TextFieldProperties) {
   let passwordHtml = null;
   if (textfield.type == 'password') {
     if (isPassword) {
-      passwordHtml = <i className={Icon.Eye} onClick={() => setPassword(false)}></i>;
+      passwordHtml = (
+        <div className={styles.iconBox} onClick={() => setPassword(false)}>
+          <Icons.Eye />
+        </div>
+      );
     } else {
-      passwordHtml = <i className={Icon.EyeSlash} onClick={() => setPassword(true)}></i>;
+      passwordHtml = (
+        <div className={styles.iconBox} onClick={() => setPassword(true)}>
+          <Icons.EyeSlash />
+        </div>
+      );
     }
   }
 
@@ -92,7 +94,7 @@ export function TextFieldLib({ textfield }: TextFieldProperties) {
       <div className={styles.main}>
         <LabelHeaderLib labelHeader={labelHeader} />
         <div className={`${styles.container} ${textfield.disabled ? styles.disabled : ''}`}>
-          {iconHtml}
+          {textfield.icon}
           {tfHtml}
           {passwordHtml}
         </div>

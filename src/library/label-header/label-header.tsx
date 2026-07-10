@@ -1,5 +1,5 @@
 import styles from './label-header.module.css';
-import { Icon } from '../constants';
+import { Icons } from '..';
 
 export class LabelHeader {
   public label: string = '';
@@ -29,7 +29,7 @@ export function LabelHeaderLib({ labelHeader }: labelHeaderProperties) {
   if (labelHeader.infoText.length > 0) {
     infoHtml = (
       <div className={styles.info_container}>
-        <i className={Icon.Info}></i>
+        <Icons.Info />
         <div className={styles.info}>{labelHeader.infoText}</div>
       </div>
     );

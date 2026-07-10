@@ -1,20 +1,19 @@
 import styles from './btn.module.css';
-import type { IconType } from '../constants';
 export class Button {
   public label: string = '';
   public disabled: boolean = false;
-  public startIcon: IconType | null = null;
-  public endIcon: IconType | null = null;
+  public startIcon: React.JSX.Element | null = null;
+  public endIcon: React.JSX.Element | null = null;
   constructor(label: string) {
     this.label = label;
   }
   setDisabled(disabled: boolean) {
     this.disabled = disabled;
   }
-  setStartIcon(icon: IconType) {
+  setStartIcon(icon: React.JSX.Element) {
     this.startIcon = icon;
   }
-  setEndIcon(icon: IconType) {
+  setEndIcon(icon: React.JSX.Element) {
     this.endIcon = icon;
   }
 }
@@ -29,22 +28,14 @@ export function ButtonLib({ button, eventHandler }: ButtonProperties) {
     eventHandler();
   };
 
-  let startIconHtml = null;
-  if (button.startIcon != null) {
-    startIconHtml = <i className={button.startIcon}></i>;
-  }
-  let endIconHtml = null;
-  if (button.endIcon != null) {
-    endIconHtml = <i className={button.endIcon}></i>;
-  }
   return (
     <>
       <div className={`${styles.container} ${button.disabled ? styles.disabled : ''}`}>
         <button className={styles.button} onClick={() => handleClick()}>
           <div className={styles.box}>
-            {startIconHtml}
+            {button.startIcon}
             {button.label}
-            {endIconHtml}
+            {button.endIcon}
           </div>
         </button>
       </div>

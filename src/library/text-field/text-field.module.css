@@ -41,3 +41,7 @@ input {
   outline: none;
   background-color: transparent;
 }
+
+.iconBox{
+ display: flex;
+}

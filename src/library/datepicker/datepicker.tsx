@@ -1,6 +1,6 @@
 import styles from './datepicker.module.css';
 import { LabelHeader, LabelHeaderLib } from '..';
-import { Icon } from '../constants';
+import { Icons } from '..';
 import { useEffect, useState } from 'react';
 export class DatePicker {
   public label: string = '';
@@ -47,9 +47,9 @@ export function DatePickerLib({ datepicker }: DatePickerProperties) {
   };
   let labelHeader: LabelHeader = new LabelHeader(datepicker.label, datepicker.isMandatory, datepicker.infoText);
 
-  let calenderIconHtml = <i className={Icon.Calendar}></i>;
+  let calenderIconHtml = <Icons.Calendar/>;
   let inputHtml = <input readOnly type="text" value={displayDate} />;
-  let downArrowHtml = <i className={isCalenderOpen ? Icon.ArrowUp : Icon.ArrowDown}></i>;
+  // let downArrowHtml = <i className={isCalenderOpen ? Icon.ArrowUp : Icon.ArrowDown}></i>;
 
   return (
     <>
@@ -58,7 +58,7 @@ export function DatePickerLib({ datepicker }: DatePickerProperties) {
         <div className={`${styles.container} ${datepicker.disabled ? styles.disabled : ''}`} onClick={() => OpenCalender()}>
           {calenderIconHtml}
           {inputHtml}
-          {downArrowHtml}
+          
         </div>
         <div className={`${styles.calender} ${isCalenderOpen ? styles.show : ''}`}>
           {calenderType === 1 && <CalendarDays />}
