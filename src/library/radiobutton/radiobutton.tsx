@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LabelHeader, LabelHeaderLib } from '..';
+import { LabelHeader, LabelHeaderLib } from '../';
 import styles from './radiobutton.module.css';
 interface Options {
  labelKey: string;

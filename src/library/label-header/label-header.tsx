@@ -1,5 +1,5 @@
 import styles from './label-header.module.css';
-import { Icons } from '..';
+import { Icons } from '../';
 
 export class LabelHeader {
   public label: string = '';

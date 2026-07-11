@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './text-field.module.css';
-import { Icons } from '..';
-import { LabelHeader, LabelHeaderLib } from '..';
+import { Icons } from '../';
+import { LabelHeader, LabelHeaderLib } from '../';
 
 type InputType = 'text' | 'password' | 'number' | 'email';
 

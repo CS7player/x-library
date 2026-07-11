@@ -1,6 +1,6 @@
 import styles from './datepicker.module.css';
-import { LabelHeader, LabelHeaderLib } from '..';
-import { Icons } from '..';
+import { LabelHeader, LabelHeaderLib } from '../';
+import { Icons } from '../';
 import { useEffect, useState } from 'react';
 export class DatePicker {
   public label: string = '';

@@ -1,22 +1,22 @@
 import styles from './checkbox.module.css';
 import { useState } from 'react';
-import { LabelHeaderLib, LabelHeader } from '..';
-interface CheckBoxOptions {
+import { LabelHeaderLib, LabelHeader } from '../';
+interface Options {
   labelKey: string;
   valueKey: string | number;
 }
 export class CheckBox {
   public label: string = '';
-  public checkBoxOptions!: CheckBoxOptions;
-  public checkBoxArray!: any[];
+  public options!: Options;
+  public array!: any[];
   public selectedValues: any[] = [];
   public isMandatory: boolean = false;
   public disabled: boolean = false;
   public infoText: string = '';
-  constructor(label: string = '', checkBoxOptions: CheckBoxOptions, checkBoxArray: any[] = [], selectedValues: any[] = [], isMandatory: boolean) {
+  constructor(label: string = '', options: Options, array: any[] = [], selectedValues: any[] = [], isMandatory: boolean) {
     this.label = label;
-    this.checkBoxOptions = checkBoxOptions;
-    this.checkBoxArray = checkBoxArray;
+    this.options = options;
+    this.array = array;
     this.selectedValues = selectedValues;
     this.isMandatory = isMandatory;
   }
@@ -57,15 +57,15 @@ export function CheckBoxLib({ checkbox }: CheckBoxProperties) {
       <div className={styles.main}>
         <LabelHeaderLib labelHeader={labelHeader} />
         <div className={styles.container}>
-          {checkbox.checkBoxArray.map((ele) => (
-            <div key={String(ele[checkbox.checkBoxOptions.valueKey])} className={`${styles.checkbox_container} ${checkbox.disabled ? styles.disabled : ''}`}>
+          {checkbox.array.map((ele) => (
+            <div key={String(ele[checkbox.options.valueKey])} className={`${styles.checkbox_container} ${checkbox.disabled ? styles.disabled : ''}`}>
               <input
-                id={ele[checkbox.checkBoxOptions['labelKey']]}
+                id={ele[checkbox.options['labelKey']]}
                 type="checkbox"
-                checked={selectedArray.includes(ele[checkbox.checkBoxOptions['valueKey']])}
-                onChange={(e) => clickHandler(ele[checkbox.checkBoxOptions['valueKey']], e.target.checked)}
+                checked={selectedArray.includes(ele[checkbox.options['valueKey']])}
+                onChange={(e) => clickHandler(ele[checkbox.options['valueKey']], e.target.checked)}
               />
-              <label htmlFor={ele[checkbox.checkBoxOptions['labelKey']]}>{ele[checkbox.checkBoxOptions['labelKey']]}</label>
+              <label htmlFor={ele[checkbox.options['labelKey']]}>{ele[checkbox.options['labelKey']]}</label>
             </div>
           ))}
         </div>
