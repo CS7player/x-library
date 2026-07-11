@@ -1,6 +1,6 @@
 {
   "name": "@cs7player/react-lib",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -12,20 +12,15 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./styles.css": "./dist/index.css"
   },
   "scripts": {
-    "dev": "vite",
-    "build-web": "tsc -b && vite build",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "react": "^19",
-    "react-dom": "^19"
-  },
-  "dependencies": {
     "react": "^19",
     "react-dom": "^19"
   },
