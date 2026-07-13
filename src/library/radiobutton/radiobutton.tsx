@@ -33,15 +33,17 @@ export class RadioButton {
 
 interface RadioButtonProperties {
  radiobutton: RadioButton;
+ clickHandler?: () => void;
 }
 
-export function RadioButtonLib({ radiobutton }: RadioButtonProperties) {
+export function RadioButtonLib({ radiobutton, clickHandler }: RadioButtonProperties) {
  let [value, setValue] = useState(radiobutton.value);
 
- const clickHandler = (val: any) => {
+ const eventHandler = (val: any) => {
   if (radiobutton.disabled) return;
   setValue(val);
   radiobutton.setValue(val);
+  clickHandler?.();
  };
  let labelHeader: LabelHeader = new LabelHeader(radiobutton.label, radiobutton.isMandatory, radiobutton.infoText);
 
@@ -59,7 +61,7 @@ export function RadioButtonLib({ radiobutton }: RadioButtonProperties) {
         value={ele[radiobutton.options.valueKey]}
         checked={value == ele[radiobutton.options.valueKey]}
         disabled={radiobutton.disabled}
-        onChange={(e) => clickHandler(e.target.value)}
+        onChange={(e) => eventHandler(e.target.value)}
        />
        <label htmlFor={String(ele[radiobutton.options.valueKey])}>{ele[radiobutton.options.labelKey]}</label>
       </div>

@@ -40,15 +40,17 @@ export class TextField {
 
 interface TextFieldProperties {
  textfield: TextField;
+ clickHandler?: () => void;
 }
 
-export function TextFieldLib({ textfield }: TextFieldProperties) {
+export function TextFieldLib({ textfield, clickHandler }: TextFieldProperties) {
  const [value, valueUpdater] = useState(textfield.value);
  const [isPassword, setPassword] = useState(true);
  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   if (textfield.disabled) return;
   valueUpdater(e.target.value);
   textfield.setValue?.(e.target.value);
+  clickHandler?.();
  };
 
  let labelHeader: LabelHeader = new LabelHeader(textfield.label, textfield.isMandatory, textfield.infoText);

@@ -19,13 +19,13 @@ export class Button {
 }
 interface ButtonProperties {
  button: Button;
- clickHandler: () => void;
+ clickHandler?: () => void;
 }
 
 export function ButtonLib({ button, clickHandler }: ButtonProperties) {
  const handleClick = () => {
   if (button.disabled) return;
-  clickHandler();
+  clickHandler?.();
  };
 
  return (

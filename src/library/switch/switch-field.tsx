@@ -1,19 +1,27 @@
 import styles from './switch-field.module.css';
 import { LabelHeaderLib, LabelHeader } from '../';
 
+interface Options {
+ rightSideName: string;
+ leftSideName: string;
+}
 export class SwitchField {
  public label: string = '';
- public value: string | number | null = null;
+ public value: boolean = false;
  public isMandatory: boolean = false;
+ public options: Options = { rightSideName: '', leftSideName: '' };
  public disabled: boolean = false;
  public infoText: string = '';
- constructor(label: string = '', value: string | number, isMandatory: boolean) {
+ constructor(label: string = '', value: false, isMandatory: boolean) {
   this.label = label;
   this.value = value;
   this.isMandatory = isMandatory;
  }
- setValue(value: string) {
+ setValue(value: boolean) {
   this.value = value;
+ }
+ setOptions(options: Options) {
+  this.options = options;
  }
  setDisabled(disabled: boolean) {
   this.disabled = disabled;

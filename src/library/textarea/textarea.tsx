@@ -35,14 +35,16 @@ export class TextArea {
 
 interface TextAreaProperties {
  textArea: TextArea;
+ clickHandler?: () => void;
 }
 
-export function TextAreaLib({ textArea }: TextAreaProperties) {
+export function TextAreaLib({ textArea, clickHandler }: TextAreaProperties) {
  const [value, setValue] = useState(textArea.value);
  const handleChange = (val: string) => {
   if (textArea.disabled) return;
   setValue(val);
   textArea.setValue?.(val);
+  clickHandler?.();
  };
 
  let labelHeader: LabelHeader = new LabelHeader(textArea.label, textArea.isMandatory, textArea.infoText);

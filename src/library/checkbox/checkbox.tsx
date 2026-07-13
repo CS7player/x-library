@@ -33,12 +33,13 @@ export class CheckBox {
 
 interface CheckBoxProperties {
  checkbox: CheckBox;
+ clickHandler?: () => void;
 }
 
-export function CheckBoxLib({ checkbox }: CheckBoxProperties) {
+export function CheckBoxLib({ checkbox, clickHandler }: CheckBoxProperties) {
  let [selectedArray, valueUpdater] = useState(checkbox.selectedValues);
 
- const clickHandler = (value: any, isChecked: boolean) => {
+ const eventHandler = (value: any, isChecked: boolean) => {
   if (checkbox.disabled) return;
   let updated: any[];
   if (isChecked) {
@@ -48,6 +49,7 @@ export function CheckBoxLib({ checkbox }: CheckBoxProperties) {
   }
   valueUpdater(updated);
   checkbox.setValue(updated);
+  clickHandler?.();
  };
 
  let labelHeader: LabelHeader = new LabelHeader(checkbox.label, checkbox.isMandatory, checkbox.infoText);
@@ -63,7 +65,7 @@ export function CheckBoxLib({ checkbox }: CheckBoxProperties) {
         id={ele[checkbox.options['labelKey']]}
         type="checkbox"
         checked={selectedArray.includes(ele[checkbox.options['valueKey']])}
-        onChange={(e) => clickHandler(ele[checkbox.options['valueKey']], e.target.checked)}
+        onChange={(e) => eventHandler(ele[checkbox.options['valueKey']], e.target.checked)}
        />
        <label htmlFor={ele[checkbox.options['labelKey']]}>{ele[checkbox.options['labelKey']]}</label>
       </div>

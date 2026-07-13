@@ -33,14 +33,16 @@ export class DropDown {
 
 interface DropDownProperties {
  dropdown: DropDown;
+ clickHandler?: () => void;
 }
 
-export function DropDownLib({ dropdown }: DropDownProperties) {
+export function DropDownLib({ dropdown, clickHandler }: DropDownProperties) {
  let [value, setValue] = useState(dropdown.value);
- const clickHandler = (val: string | number) => {
+ const eventHandler = (val: string | number) => {
   if (dropdown.disabled) return;
   setValue(val);
   dropdown.setValue(val);
+  clickHandler?.();
  };
  let labelHeader: LabelHeader = new LabelHeader(dropdown.label, dropdown.isMandatory, dropdown.infoText);
 
@@ -49,7 +51,7 @@ export function DropDownLib({ dropdown }: DropDownProperties) {
    <div className={styles.main}>
     <LabelHeaderLib labelHeader={labelHeader} />
     <div className={`${styles.container} ${dropdown.disabled ? styles.disabled : ''}`}>
-     <select disabled={dropdown.disabled} name={dropdown.label} id={dropdown.label} value={value ?? ''} onChange={(e) => clickHandler(e.target.value)}>
+     <select disabled={dropdown.disabled} name={dropdown.label} id={dropdown.label} value={value ?? ''} onChange={(e) => eventHandler(e.target.value)}>
       <option value="">Select</option>
       {dropdown.array.map((ele) => {
        return <option value={ele[dropdown.options.valueKey]}>{ele[dropdown.options.labelKey]}</option>;
