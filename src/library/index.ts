@@ -7,7 +7,9 @@ import { DatePicker, DatePickerLib } from "./datepicker/datepicker";
 import { RadioButton, RadioButtonLib } from './radiobutton/radiobutton';
 import { TextArea, TextAreaLib } from './textarea/textarea';
 import { DropDown, DropDownLib } from './dropdown/dropdown';
+import { SwitchField, SwitchFieldLib } from './switch/switch-field';
 export {
  Icons, LabelHeader, LabelHeaderLib, ButtonLib, Button, TextFieldLib, TextField, CheckBox, CheckBoxLib,
- DatePicker, DatePickerLib, RadioButton, RadioButtonLib, TextArea, TextAreaLib, DropDown, DropDownLib
+ DatePicker, DatePickerLib, RadioButton, RadioButtonLib, TextArea, TextAreaLib, DropDown, DropDownLib,
+ SwitchField, SwitchFieldLib
 };

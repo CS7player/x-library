@@ -10,7 +10,7 @@ export class SwitchField {
  public label: string = '';
  public value: boolean = false;
  public isMandatory: boolean = false;
- public options: Options = { rightSideName: '', leftSideName: '' };
+ public options: Options = { rightSideName: ' ', leftSideName: ' ' };
  public disabled: boolean = false;
  public infoText: string = '';
  constructor(label: string = '', value: false, isMandatory: boolean) {
@@ -50,10 +50,10 @@ export function SwitchFieldLib({ switchField, clickHandler }: SwitchFieldPropert
   <>
    <div className={styles.main}>
     <LabelHeaderLib labelHeader={labelHeader} />
-    <div className={`${styles.container} ${switchField.disabled ? styles.disabled : ''}`}>
-     <div className={styles.switch_container} onClick={handleClick}>
-      <div className={styles.content}>{switchField.options.leftSideName}</div>
-      <div className={styles.content}>{switchField.options.rightSideName}</div>
+    <div className={styles.container}>
+     <div className={`${styles.switch_container} ${switchField.disabled ? styles.disabled : ''}`} onClick={handleClick}>
+      <div className={styles.content}>{switchField.options.leftSideName ?? ' '}</div>
+      <div className={styles.content}>{switchField.options.rightSideName ?? ' '}</div>
       <div className={`${styles.toggler} ${switchField.value ? styles.right : styles.left}`}></div>
      </div>
     </div>
