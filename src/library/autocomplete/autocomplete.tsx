@@ -32,9 +32,10 @@ export class AutoComplete {
 
 interface AutoCompleteProperties {
  autoComplete: AutoComplete;
+ clickHandler?: () => void;
 }
 
-export function AutoCompleteLib({ autoComplete }: AutoCompleteProperties) {
+export function AutoCompleteLib({ autoComplete, clickHandler }: AutoCompleteProperties) {
  let labelHeader: LabelHeader = new LabelHeader(autoComplete.label, autoComplete.isMandatory, autoComplete.infoText);
 
  return (
