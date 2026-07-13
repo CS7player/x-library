@@ -14,11 +14,12 @@ export class TextField {
  public isMandatory: boolean = false;
  public icon: React.JSX.Element | null = null;
  public infoText: string = '';
- constructor(label: string = '', placeholder: string = '', value: string = '', type: InputType = 'text') {
+ constructor(label: string = '', placeholder: string = '', value: string = '', type: InputType = 'text', isMandatory: boolean = false) {
   this.label = label;
   this.placeholder = placeholder;
   this.value = value;
   this.type = type;
+  this.isMandatory = isMandatory;
  }
  setValue(value: string) {
   this.value = value;

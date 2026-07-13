@@ -13,8 +13,6 @@
  border: 1px solid var(--border-color);
  padding: var(--min-padding);
  border-radius: var(--border-radius);
- display: flex;
- column-gap: 0.4rem;
  box-sizing: border-box;
  cursor: pointer;
  transition:
@@ -30,18 +28,15 @@
 .disabled {
  background-color: var(--bg-disabled);
  cursor: not-allowed;
- > input {
+ > textarea {
   cursor: not-allowed;
  }
 }
 
-input {
+textarea {
  width: 100%;
  border: none;
  outline: none;
+ box-sizing: border-box;
  background-color: transparent;
-}
-
-.iconBox {
- display: flex;
 }

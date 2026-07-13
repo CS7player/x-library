@@ -34,25 +34,25 @@ export class TextArea {
 }
 
 interface TextAreaProperties {
- textarea: TextArea;
+ textArea: TextArea;
 }
 
-export function TextAreaLib({ textarea }: TextAreaProperties) {
- const [value, setValue] = useState(textarea.value);
+export function TextAreaLib({ textArea }: TextAreaProperties) {
+ const [value, setValue] = useState(textArea.value);
  const handleChange = (val: string) => {
-  if (textarea.disabled) return;
+  if (textArea.disabled) return;
   setValue(val);
-  textarea.setValue?.(val);
+  textArea.setValue?.(val);
  };
 
- let labelHeader: LabelHeader = new LabelHeader(textarea.label, textarea.isMandatory, textarea.infoText);
+ let labelHeader: LabelHeader = new LabelHeader(textArea.label, textArea.isMandatory, textArea.infoText);
 
  return (
   <>
    <div className={styles.main}>
     <LabelHeaderLib labelHeader={labelHeader} />
-    <div className={`${styles.container} ${textarea.disabled ? styles.disabled : ''}`}>
-     <textarea rows={textarea.row} value={value} placeholder={textarea.placeholder} onChange={(e) => handleChange(e.target.value)}></textarea>
+    <div className={`${styles.container} ${textArea.disabled ? styles.disabled : ''}`}>
+     <textarea rows={textArea.row} value={value} placeholder={textArea.placeholder} onChange={(e) => handleChange(e.target.value)}></textarea>
     </div>
    </div>
   </>

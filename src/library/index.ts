@@ -6,7 +6,8 @@ import { CheckBox, CheckBoxLib } from "./checkbox/checkbox";
 import { DatePicker, DatePickerLib } from "./datepicker/datepicker";
 import { RadioButton, RadioButtonLib } from './radiobutton/radiobutton';
 import { TextArea, TextAreaLib } from './textarea/textarea';
+import { DropDown, DropDownLib } from './dropdown/dropdown';
 export {
  Icons, LabelHeader, LabelHeaderLib, ButtonLib, Button, TextFieldLib, TextField, CheckBox, CheckBoxLib,
- DatePicker, DatePickerLib, RadioButton, RadioButtonLib, TextArea, TextAreaLib
+ DatePicker, DatePickerLib, RadioButton, RadioButtonLib, TextArea, TextAreaLib, DropDown, DropDownLib
 };

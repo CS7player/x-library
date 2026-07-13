@@ -13,7 +13,7 @@ export class CheckBox {
  public isMandatory: boolean = false;
  public disabled: boolean = false;
  public infoText: string = '';
- constructor(label: string = '', options: Options, array: any[] = [], selectedValues: any[] = [], isMandatory: boolean) {
+ constructor(label: string = '', options: Options, array: any[] = [], selectedValues: any[] = [], isMandatory: boolean = false) {
   this.label = label;
   this.options = options;
   this.array = array;

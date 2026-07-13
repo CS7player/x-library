@@ -9,6 +9,9 @@
 
 .container {
  width: 100%;
+ border: 1px solid var(--border-color);
+ padding: var(--min-padding);
+ border-radius: var(--border-radius);
  display: flex;
  flex-wrap: wrap;
  gap: var(--min-padding);

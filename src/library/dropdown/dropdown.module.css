@@ -9,7 +9,32 @@
 
 .container {
  width: 100%;
- display: flex;
- flex-wrap: wrap;
- gap: var(--min-padding);
+ border: 1px solid var(--border-color);
+ padding: var(--min-padding);
+ border-radius: var(--border-radius);
+ box-sizing: border-box;
+ cursor: pointer;
+ transition:
+  border-color 0.2s,
+  box-shadow 0.2s;
+}
+
+.container:focus-within {
+ border-color: var(--border-focus-color);
+ box-shadow: 0 0 0 3px rgb(37 99 235 / 15%);
+}
+
+.disabled {
+ background-color: var(--bg-disabled);
+ cursor: not-allowed;
+ > select {
+  cursor: not-allowed;
+ }
+}
+
+select {
+ width: 100%;
+ border: none;
+ outline: none;
+ background-color: transparent;
 }
