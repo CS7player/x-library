@@ -1,3 +1,15 @@
-.test {
-  color: red;
+.main {
+ width: 100%;
+ padding: var(--min-padding);
+ display: flex;
+ flex-direction: column;
+ row-gap: var(--min-padding);
+ box-sizing: border-box;
+}
+
+.container {
+ width: 100%;
+ display: flex;
+ flex-wrap: wrap;
+ gap: var(--min-padding);
 }

@@ -1,57 +1,57 @@
 .container {
-  width: 100%;
-  padding: var(--min-padding);
-  box-sizing: border-box;
+ width: 100%;
+ padding: var(--min-padding);
+ box-sizing: border-box;
 }
 
 .container.disabled > .button {
-  background-color: var(--bg-disabled);
-  transition: none;
-  cursor: not-allowed;
+ background-color: var(--bg-disabled);
+ transition: none;
+ cursor: not-allowed;
 }
 
 .button {
-  width: 100%;
-  background-color: var(--bg-color);
-  border: 1px solid var(--border-color);
-  color: var(--font-color);
-  font-size: var(--label-size);
-  font-weight: var(--label-weight);
-  border-radius: var(--border-radius);
-  padding: var(--min-padding);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition:
-    background-color 0.2s,
-    transform 0.1s,
-    box-shadow 0.2s;
+ width: 100%;
+ background-color: var(--bg-color);
+ border: 1px solid var(--border-color);
+ color: var(--font-color);
+ font-size: var(--label-size);
+ font-weight: var(--label-weight);
+ border-radius: var(--border-radius);
+ padding: var(--min-padding);
+ cursor: pointer;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ transition:
+  background-color 0.2s,
+  transform 0.1s,
+  box-shadow 0.2s;
 }
 
 .button > .box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 0.5rem;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ column-gap: 0.5rem;
 }
 
 .button:hover {
-  border-color: var(--border-focus-color);
-  filter: brightness(95%);
+ border-color: var(--border-focus-color);
+ filter: brightness(95%);
 }
 
 .button:active {
-  transform: scale(0.97);
-  filter: brightness(90%);
+ transform: scale(0.97);
+ filter: brightness(90%);
 }
 
 .container.disabled > .button:active {
-  transform: scale(1);
-  filter: brightness(100%);
+ transform: scale(1);
+ filter: brightness(100%);
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+ outline: 2px solid var(--primary-color);
+ outline-offset: 2px;
 }

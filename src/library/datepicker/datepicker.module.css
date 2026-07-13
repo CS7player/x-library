@@ -1,57 +1,57 @@
 .main {
-  width: 100%;
-  padding: var(--min-padding);
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--min-padding);
-  box-sizing: border-box;
+ width: 100%;
+ padding: var(--min-padding);
+ display: flex;
+ flex-direction: column;
+ row-gap: var(--min-padding);
+ box-sizing: border-box;
 }
 
 .container {
-  width: 100%;
-  border: 1px solid var(--border-color);
-  padding: var(--min-padding);
-  border-radius: var(--border-radius);
-  display: flex;
-  column-gap: 0.4rem;
-  box-sizing: border-box;
-  cursor: pointer;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+ width: 100%;
+ border: 1px solid var(--border-color);
+ padding: var(--min-padding);
+ border-radius: var(--border-radius);
+ display: flex;
+ column-gap: 0.4rem;
+ box-sizing: border-box;
+ cursor: pointer;
+ transition:
+  border-color 0.2s,
+  box-shadow 0.2s;
 }
 
 .container:focus-within {
-  border-color: var(--border-focus-color);
-  box-shadow: 0 0 0 3px rgb(37 99 235 / 15%);
+ border-color: var(--border-focus-color);
+ box-shadow: 0 0 0 3px rgb(37 99 235 / 15%);
 }
 
 .disabled {
-  background-color: var(--bg-disabled);
+ background-color: var(--bg-disabled);
+ cursor: not-allowed;
+ > input {
   cursor: not-allowed;
-  > input {
-    cursor: not-allowed;
-  }
+ }
 }
 
 input {
-  width: 100%;
-  border: none;
-  outline: none;
-  background-color: transparent;
+ width: 100%;
+ border: none;
+ outline: none;
+ background-color: transparent;
 }
 
 .calender {
-  width: 100%;
-  border: 1px solid var(--border-color);
-  padding: var(--min-padding);
-  border-radius: var(--border-radius);
-  display: none;
-  column-gap: 0.4rem;
-  box-sizing: border-box;
-  cursor: pointer;
+ width: 100%;
+ border: 1px solid var(--border-color);
+ padding: var(--min-padding);
+ border-radius: var(--border-radius);
+ display: none;
+ column-gap: 0.4rem;
+ box-sizing: border-box;
+ cursor: pointer;
 }
 
-.calender.show{
+.calender.show {
  display: block;
 }

@@ -1,47 +1,47 @@
 .main {
-  width: 100%;
-  padding: var(--min-padding);
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--min-padding);
-  box-sizing: border-box;
+ width: 100%;
+ padding: var(--min-padding);
+ display: flex;
+ flex-direction: column;
+ row-gap: var(--min-padding);
+ box-sizing: border-box;
 }
 
 .container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--min-padding);
+ width: 100%;
+ display: flex;
+ flex-wrap: wrap;
+ gap: var(--min-padding);
 }
 
 .checkbox_container {
-  display: flex;
-  column-gap: var(--min-padding);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding-left: var(--min-padding);
-  padding-right: var(--min-padding);
-  background-color: var(--bg-color);
+ display: flex;
+ column-gap: var(--min-padding);
+ border: 1px solid var(--border-color);
+ border-radius: var(--border-radius);
+ padding-left: var(--min-padding);
+ padding-right: var(--min-padding);
+ background-color: var(--bg-color);
 }
 
 .checkbox_container > input {
-  cursor: pointer;
+ cursor: pointer;
 }
 
 .checkbox_container > label {
-  cursor: pointer;
-  font-size: var(--content-size);
-  font-weight: var(--content-weight);
+ cursor: pointer;
+ font-size: var(--content-size);
+ font-weight: var(--content-weight);
 }
 
 .checkbox_container.disabled {
-  background-color: var(--bg-disabled);
+ background-color: var(--bg-disabled);
 }
 
 .checkbox_container.disabled > input {
-  cursor: not-allowed;
+ cursor: not-allowed;
 }
 
 .checkbox_container.disabled > label {
-  cursor: not-allowed;
+ cursor: not-allowed;
 }
