@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './text-field.module.css';
+import styles from './textarea.module.css';
 import { LabelHeader, LabelHeaderLib } from '../';
 
 export class TextArea {
