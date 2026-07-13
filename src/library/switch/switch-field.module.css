@@ -12,7 +12,45 @@
  border: 1px solid var(--border-color);
  padding: var(--min-padding);
  border-radius: var(--border-radius);
+ box-sizing: border-box;
+}
+
+.switch_container {
+ width: 100%;
+ border: 1px solid var(--border-color);
+ padding: var(--min-padding);
+ border-radius: 100px;
+ position: relative;
  display: flex;
- flex-wrap: wrap;
- gap: var(--min-padding);
+ align-items: center;
+ box-sizing: border-box;
+}
+
+.content {
+ font-size: var(--label-size);
+ font-weight: var(--label-weight);
+ flex: 1;
+ box-sizing: border-box;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.toggler {
+ position: absolute;
+ left: var(--min-padding);
+ top: var(--min-padding);
+ width: calc(50% - var(--min-padding));
+ height: calc(100% - (2 * var(--min-padding)));
+ border-radius: 100px;
+ background: gray;
+ transition: transform 0.3s ease;
+}
+
+.toggler.left {
+ transform: translateX(0);
+}
+
+.toggler.right {
+ transform: translateX(100%);
 }

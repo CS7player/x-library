@@ -40,6 +40,8 @@ input {
  border: none;
  outline: none;
  box-sizing: border-box;
+ font-size: var(--label-size);
+ font-weight: var(--label-weight);
  background-color: transparent;
 }
 
