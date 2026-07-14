@@ -4,38 +4,59 @@ import { useSyncExternalStore } from 'react';
 import { Observable } from '../utils/observable';
 
 export class TextArea extends Observable<TextArea> {
- public label: string = '';
- public placeholder: string = '';
- public value: string = '';
- public disabled: boolean = false;
- public row: number = 2;
- public isMandatory: boolean = false;
- public infoText: string = '';
+ private _label: string = '';
+ private _placeholder: string = '';
+ private _value: string = '';
+ private _disabled: boolean = false;
+ private _row: number = 2;
+ private _isMandatory: boolean = false;
+ private _infoText: string = '';
  constructor(label: string = '', placeholder: string = '', value: string = '', isMandatory: boolean = false) {
   super();
-  this.label = label;
-  this.placeholder = placeholder;
-  this.value = value;
-  this.isMandatory = isMandatory;
+  this._label = label;
+  this._placeholder = placeholder;
+  this._value = value;
+  this._isMandatory = isMandatory;
+ }
+ get label() {
+  return this._label;
+ }
+ get placeholder() {
+  return this._placeholder;
+ }
+ get row() {
+  return this._row;
+ }
+ get value() {
+  return this._value;
+ }
+ get isMandatory() {
+  return this._isMandatory;
+ }
+ get disabled() {
+  return this._disabled;
+ }
+ get infoText() {
+  return this._infoText;
  }
  setValue(value: string) {
-  this.value = value;
+  this._value = value;
   this.uiRender();
  }
  setDisabled(disabled: boolean) {
-  this.disabled = disabled;
+  this._disabled = disabled;
   this.uiRender();
  }
  setIsMandatory(isMandatory: boolean) {
-  this.isMandatory = isMandatory;
+  this._isMandatory = isMandatory;
   this.uiRender();
  }
  setInfoText(infoText: string) {
-  this.infoText = infoText;
+  this._infoText = infoText;
   this.uiRender();
  }
  setRow(row: number) {
-  this.row = row;
+  this._row = row;
   this.uiRender();
  }
 }

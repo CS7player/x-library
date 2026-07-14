@@ -7,40 +7,64 @@ import { Observable } from '../utils/observable';
 type InputType = 'text' | 'password' | 'number' | 'email';
 
 export class TextField extends Observable<TextField> {
- public label: string = '';
- public placeholder: string = '';
- public value: string = '';
- public disabled: boolean = false;
- public type: InputType = 'text';
- public isMandatory: boolean = false;
- public icon: React.JSX.Element | null = null;
- public infoText: string = '';
+ private _label: string = '';
+ private _placeholder: string = '';
+ private _value: string = '';
+ private _disabled: boolean = false;
+ private _type: InputType = 'text';
+ private _isMandatory: boolean = false;
+ private _icon: React.JSX.Element | null = null;
+ private _infoText: string = '';
  constructor(label: string = '', placeholder: string = '', value: string = '', type: InputType = 'text', isMandatory: boolean = false) {
   super();
-  this.label = label;
-  this.placeholder = placeholder;
-  this.value = value;
-  this.type = type;
-  this.isMandatory = isMandatory;
+  this._label = label;
+  this._placeholder = placeholder;
+  this._value = value;
+  this._type = type;
+  this._isMandatory = isMandatory;
+ }
+ get label() {
+  return this._label;
+ }
+ get placeholder() {
+  return this._placeholder;
+ }
+ get type() {
+  return this._type;
+ }
+ get value() {
+  return this._value;
+ }
+ get icon() {
+  return this._icon;
+ }
+ get isMandatory() {
+  return this._isMandatory;
+ }
+ get disabled() {
+  return this._disabled;
+ }
+ get infoText() {
+  return this._infoText;
  }
  setValue(value: string) {
-  this.value = value;
+  this._value = value;
   this.uiRender();
  }
  setDisabled(disabled: boolean) {
-  this.disabled = disabled;
+  this._disabled = disabled;
   this.uiRender();
  }
  setIcon(icon: React.JSX.Element) {
-  this.icon = icon;
+  this._icon = icon;
   this.uiRender();
  }
  setIsMandatory(isMandatory: boolean) {
-  this.isMandatory = isMandatory;
+  this._isMandatory = isMandatory;
   this.uiRender();
  }
  setInfoText(infoText: string) {
-  this.infoText = infoText;
+  this._infoText = infoText;
   this.uiRender();
  }
 }

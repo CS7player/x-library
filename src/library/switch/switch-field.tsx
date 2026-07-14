@@ -8,32 +8,50 @@ interface Options {
  leftSideName: string;
 }
 export class SwitchField extends Observable<SwitchField> {
- public label: string = '';
- public value: boolean = false;
- public isMandatory: boolean = false;
- public options: Options = { rightSideName: ' ', leftSideName: ' ' };
- public disabled: boolean = false;
- public infoText: string = '';
+ private _label: string = '';
+ private _value: boolean = false;
+ private _isMandatory: boolean = false;
+ private _options: Options = { rightSideName: ' ', leftSideName: ' ' };
+ private _disabled: boolean = false;
+ private _infoText: string = '';
  constructor(label: string = '', value: false, isMandatory: boolean) {
   super();
-  this.label = label;
-  this.value = value;
-  this.isMandatory = isMandatory;
+  this._label = label;
+  this._value = value;
+  this._isMandatory = isMandatory;
+ }
+ get label() {
+  return this._label;
+ }
+ get options() {
+  return this._options;
+ }
+ get value() {
+  return this._value;
+ }
+ get isMandatory() {
+  return this._isMandatory;
+ }
+ get disabled() {
+  return this._disabled;
+ }
+ get infoText() {
+  return this._infoText;
  }
  setValue(value: boolean) {
-  this.value = value;
+  this._value = value;
   this.uiRender();
  }
  setOptions(options: Options) {
-  this.options = options;
+  this._options = options;
   this.uiRender();
  }
  setDisabled(disabled: boolean) {
-  this.disabled = disabled;
+  this._disabled = disabled;
   this.uiRender();
  }
  setInfoText(infoText: string) {
-  this.infoText = infoText;
+  this._infoText = infoText;
   this.uiRender();
  }
 }

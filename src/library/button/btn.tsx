@@ -2,24 +2,36 @@ import { useSyncExternalStore } from 'react';
 import { Observable } from '../utils/observable';
 import styles from './btn.module.css';
 export class Button extends Observable<Button> {
- public label: string = '';
- public disabled: boolean = false;
- public startIcon: React.JSX.Element | null = null;
- public endIcon: React.JSX.Element | null = null;
+ private _label: string = '';
+ private _disabled: boolean = false;
+ private _startIcon: React.JSX.Element | null = null;
+ private _endIcon: React.JSX.Element | null = null;
  constructor(label: string) {
   super();
-  this.label = label;
+  this._label = label;
+ }
+ get label() {
+  return this._label;
+ }
+ get disabled() {
+  return this._disabled;
+ }
+ get startIcon() {
+  return this._startIcon;
+ }
+ get endIcon() {
+  return this._endIcon;
  }
  setDisabled(disabled: boolean) {
-  this.disabled = disabled;
+  this._disabled = disabled;
   this.uiRender();
  }
  setStartIcon(icon: React.JSX.Element) {
-  this.startIcon = icon;
+  this._startIcon = icon;
   this.uiRender();
  }
  setEndIcon(icon: React.JSX.Element) {
-  this.endIcon = icon;
+  this._endIcon = icon;
   this.uiRender();
  }
 }

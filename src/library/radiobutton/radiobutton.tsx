@@ -7,31 +7,52 @@ interface Options {
  valueKey: string | number;
 }
 export class RadioButton extends Observable<RadioButton> {
- public label: string = '';
- public options!: Options;
- public array!: any[];
- public value: string | number | null = null;
- public isMandatory: boolean = false;
- public disabled: boolean = false;
- public infoText: string = '';
+ private _label: string = '';
+ private _options!: Options;
+ private _array!: any[];
+ private _value: string | number | null = null;
+ private _isMandatory: boolean = false;
+ private _disabled: boolean = false;
+ private _infoText: string = '';
  constructor(label: string = '', options: Options, array: any[] = [], value: string | number, isMandatory: boolean = false) {
   super();
-  this.label = label;
-  this.options = options;
-  this.array = array;
-  this.value = value;
-  this.isMandatory = isMandatory;
+  this._label = label;
+  this._options = options;
+  this._array = array;
+  this._value = value;
+  this._isMandatory = isMandatory;
+ }
+ get label() {
+  return this._label;
+ }
+ get options() {
+  return this._options;
+ }
+ get array() {
+  return this._array;
+ }
+ get value() {
+  return this._value;
+ }
+ get isMandatory() {
+  return this._isMandatory;
+ }
+ get disabled() {
+  return this._disabled;
+ }
+ get infoText() {
+  return this._infoText;
  }
  setValue(value: string | number) {
-  this.value = value;
+  this._value = value;
   this.uiRender();
  }
  setDisabled(disabled: boolean) {
-  this.disabled = disabled;
+  this._disabled = disabled;
   this.uiRender();
  }
  setInfoText(infoText: string) {
-  this.infoText = infoText;
+  this._infoText = infoText;
   this.uiRender();
  }
 }
