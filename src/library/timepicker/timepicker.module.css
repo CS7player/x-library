@@ -13,6 +13,15 @@
  padding: var(--min-padding);
  border-radius: var(--border-radius);
  display: flex;
- flex-wrap: wrap;
- gap: var(--min-padding);
+ justify-content: space-between;
+ align-items: center;
+}
+
+.time_container {
+ display: flex;
+ column-gap: var(--min-padding);
+}
+
+.test {
+ height: 300px;
 }
