@@ -1,7 +1,7 @@
 # 🚀 React Lib
 
 <p align="center">
-  <img src="https://github.com/CS7player/x-library/icons/poster.png" width="450" alt="React Lib Logo" />
+  <img src="./icons/poster.png" width="450" alt="React Lib Logo" />
 </p>
 
 <p align="center">
@@ -79,8 +79,8 @@ export default App;
 * Label Header
 * Alert *(Coming Soon)*
 * Dialog *(Coming Soon)*
-* Dropdown *(Coming Soon)*
-* Switch *(Coming Soon)*
+* Dropdown 
+* Switch
 * Time Picker *(Coming Soon)*
 * Tooltip *(Coming Soon)*
 * Autocomplete *(Coming Soon)*
@@ -139,7 +139,7 @@ Contributions are welcome!
 
 ## 📄 License
 
-MIT License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
