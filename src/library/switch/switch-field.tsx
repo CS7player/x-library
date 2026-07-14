@@ -20,22 +20,22 @@ export class SwitchField extends Observable<SwitchField> {
   this._value = value;
   this._isMandatory = isMandatory;
  }
- get label() {
+ get label(): string {
   return this._label;
  }
- get options() {
+ get options(): Options {
   return this._options;
  }
- get value() {
+ get value(): boolean {
   return this._value;
  }
- get isMandatory() {
+ get isMandatory(): boolean {
   return this._isMandatory;
  }
- get disabled() {
+ get disabled(): boolean {
   return this._disabled;
  }
- get infoText() {
+ get infoText(): string {
   return this._infoText;
  }
  setValue(value: boolean) {

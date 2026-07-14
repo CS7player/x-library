@@ -1,3 +1,53 @@
-.test {
-  color: red;
+.container {
+ width: 35vh;
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ display: flex;
+ flex-direction: column;
+ row-gap: calc(2 * var(--min-padding));
+ padding: var(--min-padding);
+ box-sizing: border-box;
+}
+
+.alert_box {
+ width: 100%;
+ padding: var(--min-padding);
+ font-size: var(--label-size);
+ font-weight: var(--label-weight);
+ border: 1px solid var(--border-color);
+ background-color: red;
+ border-radius: 10px;
+ box-sizing: border-box;
+ position: relative;
+ display: flex;
+ justify-content: space-between;
+ animation: fadeIn 300ms ease-in-out forwards;
+}
+
+.closer {
+ background-color: azure;
+ border: 1px solid var(--border-color);
+ border-radius: 100px;
+ padding: 0px var(--min-padding);
+ box-sizing: border-box;
+ height: fit-content;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.fadeIn {
+ animation: fadeIn 300ms ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+ from {
+  opacity: 0;
+  transform: translateY(-10px);
+ }
+ to {
+  opacity: 1;
+  transform: translateY(0);
+ }
 }

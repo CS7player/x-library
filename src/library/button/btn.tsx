@@ -10,16 +10,16 @@ export class Button extends Observable<Button> {
   super();
   this._label = label;
  }
- get label() {
+ get label(): string {
   return this._label;
  }
- get disabled() {
+ get disabled(): boolean {
   return this._disabled;
  }
- get startIcon() {
+ get startIcon(): React.JSX.Element | null {
   return this._startIcon;
  }
- get endIcon() {
+ get endIcon(): React.JSX.Element | null {
   return this._endIcon;
  }
  setDisabled(disabled: boolean) {

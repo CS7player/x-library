@@ -22,25 +22,25 @@ export class CheckBox extends Observable<CheckBox> {
   this._selectedValues = selectedValues;
   this._isMandatory = isMandatory;
  }
- get label() {
+ get label(): string {
   return this._label;
  }
- get options() {
+ get options(): Options {
   return this._options;
  }
- get array() {
+ get array(): any[] {
   return this._array;
  }
- get selectedValues() {
+ get selectedValues(): any[] {
   return this._selectedValues;
  }
- get isMandatory() {
+ get isMandatory(): boolean {
   return this._isMandatory;
  }
- get disabled() {
+ get disabled(): boolean {
   return this._disabled;
  }
- get infoText() {
+ get infoText(): string {
   return this._infoText;
  }
  setValue(selectedValues: any[]) {

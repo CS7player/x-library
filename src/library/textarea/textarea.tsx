@@ -5,12 +5,12 @@ import { Observable } from '../utils/observable';
 
 export class TextArea extends Observable<TextArea> {
  private _label: string = '';
+ private _isMandatory: boolean = false;
+ private _infoText: string = '';
  private _placeholder: string = '';
  private _value: string = '';
  private _disabled: boolean = false;
  private _row: number = 2;
- private _isMandatory: boolean = false;
- private _infoText: string = '';
  constructor(label: string = '', placeholder: string = '', value: string = '', isMandatory: boolean = false) {
   super();
   this._label = label;
@@ -18,25 +18,25 @@ export class TextArea extends Observable<TextArea> {
   this._value = value;
   this._isMandatory = isMandatory;
  }
- get label() {
+ get label(): string {
   return this._label;
  }
- get placeholder() {
+ get placeholder(): string {
   return this._placeholder;
  }
- get row() {
+ get row(): number {
   return this._row;
  }
- get value() {
+ get value(): string {
   return this._value;
  }
- get isMandatory() {
+ get isMandatory(): boolean {
   return this._isMandatory;
  }
- get disabled() {
+ get disabled(): boolean {
   return this._disabled;
  }
- get infoText() {
+ get infoText(): string {
   return this._infoText;
  }
  setValue(value: string) {

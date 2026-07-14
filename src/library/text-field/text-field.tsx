@@ -23,28 +23,28 @@ export class TextField extends Observable<TextField> {
   this._type = type;
   this._isMandatory = isMandatory;
  }
- get label() {
+ get label(): string {
   return this._label;
  }
- get placeholder() {
+ get placeholder(): string {
   return this._placeholder;
  }
- get type() {
+ get type(): InputType {
   return this._type;
  }
- get value() {
+ get value(): string {
   return this._value;
  }
- get icon() {
+ get icon(): React.JSX.Element | null {
   return this._icon;
  }
- get isMandatory() {
+ get isMandatory(): boolean {
   return this._isMandatory;
  }
- get disabled() {
+ get disabled(): boolean {
   return this._disabled;
  }
- get infoText() {
+ get infoText(): string {
   return this._infoText;
  }
  setValue(value: string) {

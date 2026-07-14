@@ -22,25 +22,25 @@ export class DropDown extends Observable<DropDown> {
   this._value = value;
   this._isMandatory = isMandatory;
  }
- get label() {
+ get label(): string {
   return this._label;
  }
- get options() {
+ get options(): Options {
   return this._options;
  }
- get array() {
+ get array(): any[] {
   return this._array;
  }
- get value() {
+ get value(): string | number {
   return this._value;
  }
- get isMandatory() {
+ get isMandatory(): boolean {
   return this._isMandatory;
  }
- get disabled() {
+ get disabled(): boolean {
   return this._disabled;
  }
- get infoText() {
+ get infoText(): string {
   return this._infoText;
  }
  setValue(value: string | number) {
