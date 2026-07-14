@@ -1,11 +1,12 @@
 import styles from './dropdown.module.css';
 import { LabelHeaderLib, LabelHeader } from '../';
-import { useState } from 'react';
+import { useSyncExternalStore } from 'react';
+import { Observable } from '../utils/observable';
 interface Options {
  labelKey: string;
  valueKey: string | number;
 }
-export class DropDown {
+export class DropDown extends Observable<DropDown> {
  public label: string = '';
  public options!: Options;
  public array!: any[];
@@ -14,6 +15,7 @@ export class DropDown {
  public disabled: boolean = false;
  public infoText: string = '';
  constructor(label: string = '', options: Options, array: any[] = [], value: string | number = '', isMandatory: boolean = false) {
+  super();
   this.label = label;
   this.options = options;
   this.array = array;
@@ -22,12 +24,15 @@ export class DropDown {
  }
  setValue(value: string | number) {
   this.value = value;
+  this.uiRender();
  }
  setDisabled(disabled: boolean) {
   this.disabled = disabled;
+  this.uiRender();
  }
  setInfoText(infoText: string) {
   this.infoText = infoText;
+  this.uiRender();
  }
 }
 
@@ -37,24 +42,30 @@ interface DropDownProperties {
 }
 
 export function DropDownLib({ dropdown, clickHandler }: DropDownProperties) {
- let [value, setValue] = useState(dropdown.value);
+ const snapshot = useSyncExternalStore(dropdown.subscribe, dropdown.snapshot);
+ const dropdownObj = snapshot.state;
  const eventHandler = (val: string | number) => {
-  if (dropdown.disabled) return;
-  setValue(val);
-  dropdown.setValue(val);
+  if (dropdownObj.disabled) return;
+  dropdownObj.setValue(val);
   clickHandler?.();
  };
- let labelHeader: LabelHeader = new LabelHeader(dropdown.label, dropdown.isMandatory, dropdown.infoText);
+ let labelHeader: LabelHeader = new LabelHeader(dropdownObj.label, dropdownObj.isMandatory, dropdownObj.infoText);
 
  return (
   <>
    <div className={styles.main}>
     <LabelHeaderLib labelHeader={labelHeader} />
-    <div className={`${styles.container} ${dropdown.disabled ? styles.disabled : ''}`}>
-     <select disabled={dropdown.disabled} name={dropdown.label} id={dropdown.label} value={value ?? ''} onChange={(e) => eventHandler(e.target.value)}>
+    <div className={`${styles.container} ${dropdownObj.disabled ? styles.disabled : ''}`}>
+     <select
+      disabled={dropdownObj.disabled}
+      name={dropdownObj.label}
+      id={dropdownObj.label}
+      value={dropdownObj.value ?? ''}
+      onChange={(e) => eventHandler(e.target.value)}
+     >
       <option value="">Select</option>
-      {dropdown.array.map((ele) => {
-       return <option value={ele[dropdown.options.valueKey]}>{ele[dropdown.options.labelKey]}</option>;
+      {dropdownObj.array.map((ele) => {
+       return <option value={ele[dropdownObj.options.valueKey]}>{ele[dropdownObj.options.labelKey]}</option>;
       })}
      </select>
     </div>

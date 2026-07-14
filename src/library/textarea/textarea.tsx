@@ -1,8 +1,9 @@
-import { useState } from 'react';
 import styles from './textarea.module.css';
 import { LabelHeader, LabelHeaderLib } from '../';
+import { useSyncExternalStore } from 'react';
+import { Observable } from '../utils/observable';
 
-export class TextArea {
+export class TextArea extends Observable<TextArea> {
  public label: string = '';
  public placeholder: string = '';
  public value: string = '';
@@ -11,6 +12,7 @@ export class TextArea {
  public isMandatory: boolean = false;
  public infoText: string = '';
  constructor(label: string = '', placeholder: string = '', value: string = '', isMandatory: boolean = false) {
+  super();
   this.label = label;
   this.placeholder = placeholder;
   this.value = value;
@@ -18,18 +20,23 @@ export class TextArea {
  }
  setValue(value: string) {
   this.value = value;
+  this.uiRender();
  }
  setDisabled(disabled: boolean) {
   this.disabled = disabled;
+  this.uiRender();
  }
  setIsMandatory(isMandatory: boolean) {
   this.isMandatory = isMandatory;
+  this.uiRender();
  }
  setInfoText(infoText: string) {
   this.infoText = infoText;
+  this.uiRender();
  }
  setRow(row: number) {
   this.row = row;
+  this.uiRender();
  }
 }
 
@@ -39,22 +46,22 @@ interface TextAreaProperties {
 }
 
 export function TextAreaLib({ textArea, clickHandler }: TextAreaProperties) {
- const [value, setValue] = useState(textArea.value);
+ const snapshot = useSyncExternalStore(textArea.subscribe, textArea.snapshot);
+ const textAreaObj = snapshot.state;
  const handleChange = (val: string) => {
-  if (textArea.disabled) return;
-  setValue(val);
-  textArea.setValue?.(val);
+  if (textAreaObj.disabled) return;
+  textAreaObj.setValue?.(val);
   clickHandler?.();
  };
 
- let labelHeader: LabelHeader = new LabelHeader(textArea.label, textArea.isMandatory, textArea.infoText);
+ let labelHeader: LabelHeader = new LabelHeader(textAreaObj.label, textAreaObj.isMandatory, textAreaObj.infoText);
 
  return (
   <>
    <div className={styles.main}>
     <LabelHeaderLib labelHeader={labelHeader} />
-    <div className={`${styles.container} ${textArea.disabled ? styles.disabled : ''}`}>
-     <textarea rows={textArea.row} value={value} placeholder={textArea.placeholder} onChange={(e) => handleChange(e.target.value)}></textarea>
+    <div className={`${styles.container} ${textAreaObj.disabled ? styles.disabled : ''}`}>
+     <textarea rows={textAreaObj.row} value={textAreaObj.value} placeholder={textAreaObj.placeholder} onChange={(e) => handleChange(e.target.value)}></textarea>
     </div>
    </div>
   </>

@@ -1,11 +1,12 @@
 import styles from './checkbox.module.css';
-import { useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { LabelHeaderLib, LabelHeader } from '../';
+import { Observable } from '../utils/observable';
 interface Options {
  labelKey: string;
  valueKey: string | number;
 }
-export class CheckBox {
+export class CheckBox extends Observable<CheckBox> {
  public label: string = '';
  public options!: Options;
  public array!: any[];
@@ -14,6 +15,7 @@ export class CheckBox {
  public disabled: boolean = false;
  public infoText: string = '';
  constructor(label: string = '', options: Options, array: any[] = [], selectedValues: any[] = [], isMandatory: boolean = false) {
+  super();
   this.label = label;
   this.options = options;
   this.array = array;
@@ -22,12 +24,15 @@ export class CheckBox {
  }
  setValue(selectedValues: any[]) {
   this.selectedValues = selectedValues;
+  this.uiRender();
  }
  setDisabled(disabled: boolean) {
   this.disabled = disabled;
+  this.uiRender();
  }
  setInfoText(infoText: string) {
   this.infoText = infoText;
+  this.uiRender();
  }
 }
 
@@ -37,37 +42,37 @@ interface CheckBoxProperties {
 }
 
 export function CheckBoxLib({ checkbox, clickHandler }: CheckBoxProperties) {
- let [selectedArray, valueUpdater] = useState(checkbox.selectedValues);
+ const snapshot = useSyncExternalStore(checkbox.subscribe, checkbox.snapshot);
+ const checkboxObj = snapshot.state;
 
  const eventHandler = (value: any, isChecked: boolean) => {
-  if (checkbox.disabled) return;
+  if (checkboxObj.disabled) return;
   let updated: any[];
   if (isChecked) {
-   updated = [...selectedArray, value];
+   updated = [...checkboxObj.selectedValues, value];
   } else {
-   updated = selectedArray.filter((i) => i !== value);
+   updated = checkboxObj.selectedValues.filter((i) => i !== value);
   }
-  valueUpdater(updated);
-  checkbox.setValue(updated);
+  checkboxObj.setValue(updated);
   clickHandler?.();
  };
 
- let labelHeader: LabelHeader = new LabelHeader(checkbox.label, checkbox.isMandatory, checkbox.infoText);
+ let labelHeader: LabelHeader = new LabelHeader(checkboxObj.label, checkboxObj.isMandatory, checkboxObj.infoText);
 
  return (
   <>
    <div className={styles.main}>
     <LabelHeaderLib labelHeader={labelHeader} />
     <div className={styles.container}>
-     {checkbox.array.map((ele) => (
-      <div key={String(ele[checkbox.options.valueKey])} className={`${styles.checkbox_container} ${checkbox.disabled ? styles.disabled : ''}`}>
+     {checkboxObj.array.map((ele) => (
+      <div key={String(ele[checkboxObj.options.valueKey])} className={`${styles.checkbox_container} ${checkboxObj.disabled ? styles.disabled : ''}`}>
        <input
-        id={ele[checkbox.options['labelKey']]}
+        id={ele[checkboxObj.options['labelKey']]}
         type="checkbox"
-        checked={selectedArray.includes(ele[checkbox.options['valueKey']])}
-        onChange={(e) => eventHandler(ele[checkbox.options['valueKey']], e.target.checked)}
+        checked={checkboxObj.selectedValues.includes(ele[checkboxObj.options['valueKey']])}
+        onChange={(e) => eventHandler(ele[checkboxObj.options['valueKey']], e.target.checked)}
        />
-       <label htmlFor={ele[checkbox.options['labelKey']]}>{ele[checkbox.options['labelKey']]}</label>
+       <label htmlFor={ele[checkboxObj.options['labelKey']]}>{ele[checkboxObj.options['labelKey']]}</label>
       </div>
      ))}
     </div>

@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { LabelHeader, LabelHeaderLib } from '../';
 import styles from './radiobutton.module.css';
+import { Observable } from '../utils/observable';
 interface Options {
  labelKey: string;
  valueKey: string | number;
 }
-export class RadioButton {
+export class RadioButton extends Observable<RadioButton> {
  public label: string = '';
  public options!: Options;
  public array!: any[];
@@ -14,6 +15,7 @@ export class RadioButton {
  public disabled: boolean = false;
  public infoText: string = '';
  constructor(label: string = '', options: Options, array: any[] = [], value: string | number, isMandatory: boolean = false) {
+  super();
   this.label = label;
   this.options = options;
   this.array = array;
@@ -22,12 +24,15 @@ export class RadioButton {
  }
  setValue(value: string | number) {
   this.value = value;
+  this.uiRender();
  }
  setDisabled(disabled: boolean) {
   this.disabled = disabled;
+  this.uiRender();
  }
  setInfoText(infoText: string) {
   this.infoText = infoText;
+  this.uiRender();
  }
 }
 
@@ -37,33 +42,32 @@ interface RadioButtonProperties {
 }
 
 export function RadioButtonLib({ radiobutton, clickHandler }: RadioButtonProperties) {
- let [value, setValue] = useState(radiobutton.value);
-
+ const snapshot = useSyncExternalStore(radiobutton.subscribe, radiobutton.snapshot);
+ const radiobuttonObj = snapshot.state;
  const eventHandler = (val: any) => {
-  if (radiobutton.disabled) return;
-  setValue(val);
-  radiobutton.setValue(val);
+  if (radiobuttonObj.disabled) return;
+  radiobuttonObj.setValue(val);
   clickHandler?.();
  };
- let labelHeader: LabelHeader = new LabelHeader(radiobutton.label, radiobutton.isMandatory, radiobutton.infoText);
+ let labelHeader: LabelHeader = new LabelHeader(radiobuttonObj.label, radiobuttonObj.isMandatory, radiobuttonObj.infoText);
 
  return (
   <>
    <div className={styles.main}>
     <LabelHeaderLib labelHeader={labelHeader} />
     <div className={styles.container}>
-     {radiobutton.array.map((ele) => (
-      <div key={String(ele[radiobutton.options.valueKey])} className={`${styles.radiobutton_container} ${radiobutton.disabled ? styles.disabled : ''}`}>
+     {radiobuttonObj.array.map((ele) => (
+      <div key={String(ele[radiobuttonObj.options.valueKey])} className={`${styles.radiobuttonObj_container} ${radiobuttonObj.disabled ? styles.disabled : ''}`}>
        <input
         type="radio"
-        name={radiobutton.label}
-        id={String(ele[radiobutton.options.valueKey])}
-        value={ele[radiobutton.options.valueKey]}
-        checked={value == ele[radiobutton.options.valueKey]}
-        disabled={radiobutton.disabled}
+        name={radiobuttonObj.label}
+        id={String(ele[radiobuttonObj.options.valueKey])}
+        value={ele[radiobuttonObj.options.valueKey]}
+        checked={radiobuttonObj.value == ele[radiobuttonObj.options.valueKey]}
+        disabled={radiobuttonObj.disabled}
         onChange={(e) => eventHandler(e.target.value)}
        />
-       <label htmlFor={String(ele[radiobutton.options.valueKey])}>{ele[radiobutton.options.labelKey]}</label>
+       <label htmlFor={String(ele[radiobuttonObj.options.valueKey])}>{ele[radiobuttonObj.options.labelKey]}</label>
       </div>
      ))}
     </div>
