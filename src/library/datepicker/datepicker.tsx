@@ -1,26 +1,47 @@
 import styles from './datepicker.module.css';
 import { LabelHeader, LabelHeaderLib } from '../';
 import { Icons } from '../';
-import { useEffect, useState } from 'react';
-export class DatePicker {
- public label: string = '';
- public selectedDate: string = '';
- public isMandatory: boolean = false;
- public disabled: boolean = false;
- public infoText: string = '';
+import { useEffect, useState, useSyncExternalStore } from 'react';
+import { Observable } from '../utils/observable';
+import { DateHelper } from '../utils/dateHelper';
+export class DatePicker extends Observable<DatePicker> {
+ private _label: string = '';
+ private _selectedDate: string = '';
+ private _isMandatory: boolean = false;
+ private _disabled: boolean = false;
+ private _infoText: string = '';
  constructor(label: string = '', selectedDate: string = '', isMandatory: boolean) {
-  this.label = label;
-  this.selectedDate = selectedDate;
-  this.isMandatory = isMandatory;
+  super();
+  this._label = label;
+  this._selectedDate = selectedDate;
+  this._isMandatory = isMandatory;
+ }
+ get label(): string {
+  return this._label;
+ }
+ get selectedDate(): string {
+  return this._selectedDate;
+ }
+ get isMandatory(): boolean {
+  return this._isMandatory;
+ }
+ get disabled(): boolean {
+  return this._disabled;
+ }
+ get infoText(): string {
+  return this._infoText;
  }
  setValue(selectedDate: string) {
-  this.selectedDate = selectedDate;
+  this._selectedDate = selectedDate;
+  this.uiRender();
  }
  setDisabled(disabled: boolean) {
-  this.disabled = disabled;
+  this._disabled = disabled;
+  this.uiRender();
  }
  setInfoText(infoText: string) {
-  this.infoText = infoText;
+  this._infoText = infoText;
+  this.uiRender();
  }
 }
 
@@ -29,26 +50,28 @@ interface DatePickerProperties {
 }
 
 export function DatePickerLib({ datepicker }: DatePickerProperties) {
- const [displayDate, setDisplayDate] = useState('Invalid Date');
+ const snapshot = useSyncExternalStore(datepicker.subscribe, datepicker.snapshot);
+ const datepickerObj = snapshot.state;
  const [calenderType, setCalenderType] = useState(1);
+ let [isCalenderOpen, setCalenderOpen] = useState(false);
+ let selected_month: any = {};
  useEffect(() => {
-  const date = parseDate(datepicker.selectedDate);
+  const date = parseDate(datepickerObj.selectedDate);
   if (date) {
-   setDisplayDate(formatDate(date));
+   datepickerObj.setValue(formatDate(date));
   } else {
    datepicker.setDisabled(true);
-   setDisplayDate('Invalid Date');
+   datepickerObj.setValue('Invalid Date');
   }
  }, [datepicker.selectedDate]);
- let [isCalenderOpen, setCalenderOpen] = useState(false);
  const OpenCalender = () => {
   if (datepicker.disabled) return;
   setCalenderOpen((isCalenderOpen = !isCalenderOpen));
  };
- let labelHeader: LabelHeader = new LabelHeader(datepicker.label, datepicker.isMandatory, datepicker.infoText);
 
+ let labelHeader: LabelHeader = new LabelHeader(datepicker.label, datepicker.isMandatory, datepicker.infoText);
  let calenderIconHtml = <Icons.Calendar />;
- let inputHtml = <input readOnly type="text" value={displayDate} />;
+ let inputHtml = <input readOnly type="text" value={datepickerObj.selectedDate} />;
  // let downArrowHtml = <i className={isCalenderOpen ? Icon.ArrowUp : Icon.ArrowDown}></i>;
 
  return (
@@ -61,9 +84,7 @@ export function DatePickerLib({ datepicker }: DatePickerProperties) {
     </div>
     <div className={`${styles.calender} ${isCalenderOpen ? styles.show : ''}`}>
      {calenderType === 1 && <CalendarDays />}
-
      {calenderType === 2 && <CalendarMonths />}
-
      {calenderType === 3 && <CalendarYears />}
     </div>
    </div>
@@ -87,6 +108,15 @@ function formatDate(date: Date): string {
  const month = String(date.getMonth() + 1).padStart(2, '0');
  const year = date.getFullYear();
  return `${day}/${month}/${year}`;
+}
+
+function getMonthDates(month: any, year: any) {
+ month = ('0' + month).slice(-2);
+ var firstDate = new Date(`${year + '-' + month + '-01'}T00:00:00Z`);
+ var lastDate = new Date(year, month, 0);
+ let diff = lastDate.getDate() + 1;
+ lastDate = new Date(lastDate.setDate(diff));
+ return DateHelper.getDatesBetweenDates(firstDate, lastDate);
 }
 
 function CalendarDays() {
