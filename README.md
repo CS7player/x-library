@@ -1,42 +1,71 @@
-# 🚀 React Lib
+# 🚀 React UI Reuseable Component Library
 
 <p align="center">
-  <img src="./icons/poster.png" width="450" alt="React Lib Logo" />
+  <img src="./icons/poster.png" width="500" alt="React Lib Logo" />
 </p>
 
 <p align="center">
-A modern, lightweight and reusable React UI component library built with TypeScript.
-Can be Use in ur project, with two way data flow.
+  <strong>A modern, lightweight, and reusable React component library built with TypeScript.</strong>
+</p>
+
+<p align="center">
+Build beautiful React applications faster with customizable UI components, two-way data binding, and a developer-friendly API.
+</p>
+
+<p align="center">
+
+![React](https://img.shields.io/badge/React-18+-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?logo=typescript)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![npm](https://img.shields.io/npm/v/@cs7player/react-lib)
+
 </p>
 
 ---
 
-## ✨ Features
+# ✨ Why React Lib?
 
-- 🎨 Modern UI Components
-- ⚡ Built with React & TypeScript
-- 🧩 Easy to integrate
-- 🎯 Reusable components
-- 📱 Responsive design
-- 🛠️ Fully customizable
+React Lib is designed to make UI development simple, fast, and maintainable.
+
+It provides reusable components with an object-oriented approach, allowing state and UI to stay synchronized with minimal boilerplate.
+
+## Features
+
+- 🎨 Modern and clean UI
+- ⚡ Built with React + TypeScript
+- 📦 Lightweight package
+- 🔄 Two-way data binding
+- 🧩 Reusable architecture
+- 📱 Responsive components
+- 🎯 Strong TypeScript support
+- 🛠 Highly customizable
+- 🚀 Easy integration
 
 ---
 
-## 📦 Installation
+# 📦 Installation
+
+Using npm
 
 ```bash
 npm install @cs7player/react-lib
 ```
 
-or
+Using Yarn
 
 ```bash
 yarn add @cs7player/react-lib
 ```
 
+Using pnpm
+
+```bash
+pnpm add @cs7player/react-lib
+```
+
 ---
 
-## 🎨 Import Styles
+# 🎨 Import Styles
 
 ```tsx
 import '@cs7player/react-lib/styles.css';
@@ -44,7 +73,7 @@ import '@cs7player/react-lib/styles.css';
 
 ---
 
-## 🚀 Usage
+# 🚀 Quick Start
 
 ```tsx
 import '@cs7player/react-lib/styles.css';
@@ -53,6 +82,7 @@ import { Button, ButtonLib } from '@cs7player/react-lib';
 
 function App() {
  const button = new Button('Click Me');
+
  return <ButtonLib button={button} />;
 }
 
@@ -61,79 +91,123 @@ export default App;
 
 ---
 
-## 📚 Available Components
+# 📚 Available Components
 
-- Button
-- Text Field
-- Checkbox
-- Radio Button
-- Time Picker
-- Date Picker _(Coming Soon)_
-- Label Header
-- Alert
-- Dialog _(Coming Soon)_
-- Dropdown
-- Switch
-- Tooltip _(Coming Soon)_
-- Autocomplete _(Coming Soon)_
-- Loader _(Coming Soon)_
+| Component       | Status      |
+| --------------- | ----------- |
+| ✅ Button       | Stable      |
+| ✅ Text Field   | Stable      |
+| ✅ Checkbox     | Stable      |
+| ✅ Radio Button | Stable      |
+| ✅ Dropdown     | Stable      |
+| ✅ Switch       | Stable      |
+| ✅ Tooltip      | Stable      |
+| ✅ Time Picker  | Stable      |
+| ✅ Label Header | Stable      |
+| ✅ Alert        | Stable      |
+| ✅ Loader       | Stable      |
+| 🚧 Date Picker  | Coming Soon |
+| 🚧 Dialog       | Coming Soon |
+| 🚧 Autocomplete | Coming Soon |
 
 ---
 
-## 📖 Documentation
+# 📖 Documentation
 
-Documentation and examples will be available on GitHub.
+Documentation, examples, and API reference are available on GitHub.
 
-Repository:
+## Repository
 
 https://github.com/CS7player/x-library
 
 ---
 
-## 🛠️ Development
+# 🛠 Development
 
-Clone the repository:
+Clone the repository
 
 ```bash
 git clone https://github.com/CS7player/x-library.git
 ```
 
-Install dependencies:
+Install dependencies
 
 ```bash
 npm install
 ```
 
-Run library locally:
+Build the library
 
 ```bash
 npm run build
+```
+
+Link locally
+
+```bash
 npm link
---in ur local project--
+```
+
+In your local React project
+
+```bash
 npm link @cs7player/react-lib
 ```
 
 ---
 
-## 🤝 Contributing
+# 💡 Example
 
-Contributions are welcome!
+```tsx
+const textField = new TextField('Username');
+
+<TextFieldLib textField={textField} />;
+```
+
+---
+
+# 🤝 Contributing
+
+Contributions are always welcome!
 
 1. Fork the repository.
 2. Create a feature branch.
+
+```bash
+git checkout -b feature/my-feature
+```
+
 3. Commit your changes.
-4. Open a Pull Request.
+
+```bash
+git commit -m "Add awesome feature"
+```
+
+4. Push your branch.
+
+```bash
+git push origin feature/my-feature
+```
+
+5. Open a Pull Request.
 
 ---
 
-## 📄 License
+# 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Distributed under the MIT License.
+
+See the **LICENSE** file for more information.
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Chandra Sekhar**
 
-GitHub: https://github.com/CS7player
+GitHub:
+https://github.com/CS7player
+
+---
+
+⭐ If you find this project useful, consider giving it a star on GitHub!

@@ -1,50 +1,75 @@
 {
-  "name": "@cs7player/react-lib",
-  "version": "1.0.9",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./styles.css": "./dist/index.css"
+ "name": "@cs7player/react-lib",
+ "version": "1.0.9",
+ "license": "MIT",
+ "author": {
+  "name": "Chandra Sekhar",
+  "url": "https://github.com/CS7player",
+  "email": "s.chandrasekhar.h@gmail.com"
+ },
+ "type": "module",
+ "main": "./dist/index.js",
+ "module": "./dist/index.js",
+ "types": "./dist/index.d.ts",
+ "files": [
+  "dist"
+ ],
+ "exports": {
+  ".": {
+   "import": "./dist/index.js",
+   "types": "./dist/index.d.ts"
   },
-  "scripts": {
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "peerDependencies": {
-    "react": "^19",
-    "react-dom": "^19"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/CS7player/x-library.git"
-  },
-  "homepage": "https://github.com/CS7player/x-library",
-  "bugs": {
-    "url": "https://github.com/CS7player/x-library/issues"
-  },
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@types/node": "^24.13.2",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.3",
-    "eslint": "^10.6.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.3",
-    "globals": "^17.7.0",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.62.0",
-    "vite": "^8.1.1",
-    "vite-plugin-dts": "^5.0.3"
-  }
+  "./styles.css": "./dist/index.css"
+ },
+ "scripts": {
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview"
+ },
+ "peerDependencies": {
+  "react": "^19",
+  "react-dom": "^19"
+ },
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/CS7player/x-library.git"
+ },
+ "homepage": "https://github.com/CS7player/x-library",
+ "bugs": {
+  "url": "https://github.com/CS7player/x-library/issues"
+ },
+ "devDependencies": {
+  "@eslint/js": "^10.0.1",
+  "@types/node": "^24.13.2",
+  "@types/react": "^19.2.17",
+  "@types/react-dom": "^19.2.3",
+  "@vitejs/plugin-react": "^6.0.3",
+  "eslint": "^10.6.0",
+  "eslint-plugin-react-hooks": "^7.1.1",
+  "eslint-plugin-react-refresh": "^0.5.3",
+  "globals": "^17.7.0",
+  "typescript": "^5.9.2",
+  "typescript-eslint": "^8.62.0",
+  "vite": "^8.1.1",
+  "vite-plugin-dts": "^5.0.3"
+ },
+ "keywords": [
+  "react",
+  "react-library",
+  "react-components",
+  "ui",
+  "component-library",
+  "typescript",
+  "vite",
+  "button",
+  "textfield",
+  "datepicker",
+  "dropdown",
+  "tooltip",
+  "loader",
+  "checkbox",
+  "switch",
+  "form",
+  "react-ui"
+ ]
 }
