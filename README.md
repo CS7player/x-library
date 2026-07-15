@@ -5,20 +5,20 @@
 </p>
 
 <p align="center">
-A modern, lightweight and reusable React component library built with TypeScript.
+A modern, lightweight and reusable React UI component library built with TypeScript.
+Can be Use in ur project, with two way data flow.
 </p>
 
 ---
 
 ## ✨ Features
 
-* 🎨 Modern UI Components
-* ⚡ Built with React & TypeScript
-* 📦 Tree-shakable
-* 🧩 Easy to integrate
-* 🎯 Reusable components
-* 📱 Responsive design
-* 🛠️ Fully customizable
+- 🎨 Modern UI Components
+- ⚡ Built with React & TypeScript
+- 🧩 Easy to integrate
+- 🎯 Reusable components
+- 📱 Responsive design
+- 🛠️ Fully customizable
 
 ---
 
@@ -39,7 +39,7 @@ yarn add @cs7player/react-lib
 ## 🎨 Import Styles
 
 ```tsx
-import "@cs7player/react-lib/styles.css";
+import '@cs7player/react-lib/styles.css';
 ```
 
 ---
@@ -47,21 +47,13 @@ import "@cs7player/react-lib/styles.css";
 ## 🚀 Usage
 
 ```tsx
-import "@cs7player/react-lib/styles.css";
+import '@cs7player/react-lib/styles.css';
 
-import {
-  Button,
-  ButtonLib,
-  TextField,
-  TextFieldLib,
-} from "@cs7player/react-lib";
+import { Button, ButtonLib } from '@cs7player/react-lib';
 
 function App() {
-  const button = new Button("Click Me");
-
-  return (
-    <ButtonLib button={button} />
-  );
+ const button = new Button('Click Me');
+ return <ButtonLib button={button} />;
 }
 
 export default App;
@@ -71,20 +63,20 @@ export default App;
 
 ## 📚 Available Components
 
-* Button
-* Text Field
-* Checkbox
-* Radio Button
-* Date Picker
-* Label Header
-* Alert *(Coming Soon)*
-* Dialog *(Coming Soon)*
-* Dropdown 
-* Switch
-* Time Picker *(Coming Soon)*
-* Tooltip *(Coming Soon)*
-* Autocomplete *(Coming Soon)*
-* Loader *(Coming Soon)*
+- Button
+- Text Field
+- Checkbox
+- Radio Button
+- Time Picker
+- Date Picker _(Coming Soon)_
+- Label Header
+- Alert
+- Dialog _(Coming Soon)_
+- Dropdown
+- Switch
+- Tooltip _(Coming Soon)_
+- Autocomplete _(Coming Soon)_
+- Loader _(Coming Soon)_
 
 ---
 
@@ -112,16 +104,13 @@ Install dependencies:
 npm install
 ```
 
-Run development server:
-
-```bash
-npm run dev
-```
-
-Build the library:
+Run library locally:
 
 ```bash
 npm run build
+npm link
+--in ur local project--
+npm link @cs7player/react-lib
 ```
 
 ---

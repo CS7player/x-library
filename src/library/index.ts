@@ -11,8 +11,10 @@ import { SwitchField, SwitchFieldLib } from './switch/switch-field';
 import { AlertBox, AlertBoxLib } from './alert/alertbox';
 import { LocalStorage } from './utils/localStorage';
 import { TimePicker, TimePickerLib } from './timepicker/timepicker';
+import { ToolTip, ToolTipLib } from './tooltip/tooltip';
 export {
  Icons, LabelHeader, LabelHeaderLib, ButtonLib, Button, TextFieldLib, TextField, CheckBox, CheckBoxLib,
  DatePicker, DatePickerLib, RadioButton, RadioButtonLib, TextArea, TextAreaLib, DropDown, DropDownLib,
- SwitchField, SwitchFieldLib, AlertBox, AlertBoxLib, LocalStorage, TimePicker, TimePickerLib
+ SwitchField, SwitchFieldLib, AlertBox, AlertBoxLib, LocalStorage, TimePicker, TimePickerLib,
+ ToolTip, ToolTipLib
 };

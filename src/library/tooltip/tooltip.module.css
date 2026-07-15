@@ -1,3 +1,25 @@
-.test {
- color: red;
+.wrapper {
+ position: relative;
+}
+
+.tooltip {
+ position: absolute;
+ left: 50%;
+ top: calc(100% + var(--min-padding));
+ transform: translateX(-50%);
+ display: none;
+ max-width: 500px;
+ white-space: normal;
+ font-size: var(--content-size);
+ font-weight: var(--content-weight);
+ border: 1px solid var(--border-color);
+ background: var(--bg-color);
+ color: var(--font-color);
+ padding: var(--min-padding);
+ border-radius: var(--border-radius);
+ z-index: 9;
+}
+
+.wrapper:hover .tooltip {
+ display: block;
 }
