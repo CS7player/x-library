@@ -13,10 +13,11 @@ import { LocalStorage } from './utils/localStorage';
 import { TimePicker, TimePickerLib } from './timepicker/timepicker';
 import { ToolTip, ToolTipLib } from './tooltip/tooltip';
 import { Loader, LoaderLib } from './loader/loader';
+import { Dialog, DialogLib } from './dialog/dialog';
 
 export {
  Icons, LabelHeader, LabelHeaderLib, ButtonLib, Button, TextFieldLib, TextField, CheckBox, CheckBoxLib,
  DatePicker, DatePickerLib, RadioButton, RadioButtonLib, TextArea, TextAreaLib, DropDown, DropDownLib,
  SwitchField, SwitchFieldLib, AlertBox, AlertBoxLib, LocalStorage, TimePicker, TimePickerLib,
- ToolTip, ToolTipLib, Loader, LoaderLib
+ ToolTip, ToolTipLib, Loader, LoaderLib, Dialog, DialogLib
 };
