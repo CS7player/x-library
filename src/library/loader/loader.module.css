@@ -1,3 +1,15 @@
-.test {
- color: red;
+.container {
+ width: 100vw;
+ height: 100vh;
+ background-color: rgba(179, 178, 178, 0.5);
+ position: absolute;
+ top: 0;
+ right: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.logo {
+ width: 15vh;
 }
