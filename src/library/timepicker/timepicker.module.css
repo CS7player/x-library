@@ -15,13 +15,24 @@
  display: flex;
  justify-content: space-between;
  align-items: center;
+ box-sizing: border-box;
 }
 
 .time_container {
  display: flex;
  column-gap: var(--min-padding);
+ box-sizing: border-box;
 }
 
-.test {
- height: 300px;
+.error_text {
+ font-size: var(--content-size);
+ font-weight: var(--content-weight);
+ color: var(--danger-color);
+ box-sizing: border-box;
+}
+
+.no_arrow {
+ appearance: none;
+ -webkit-appearance: none;
+ -moz-appearance: none;
 }
