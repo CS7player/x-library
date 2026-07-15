@@ -42,7 +42,7 @@ input {
 }
 
 .calender {
- width: 100%;
+ width: 230px;
  border: 1px solid var(--border-color);
  padding: var(--min-padding);
  border-radius: var(--border-radius);
@@ -54,4 +54,41 @@ input {
 
 .calender.show {
  display: block;
+}
+
+.dates {
+ width: 100%;
+ display: grid;
+ grid-template-columns: repeat(7, 1fr);
+ gap: var(--min-padding);
+}
+
+.box {
+ padding: var(--min-padding);
+ border: 1px solid var(--border-color);
+ padding: var(--min-padding);
+ border-radius: var(--border-radius);
+ display: flex;
+ justify-content: center;
+ align-content: center;
+ cursor: pointer;
+}
+
+.not_used {
+ background-color: var(--bg-disabled);
+ cursor: not-allowed;
+}
+
+.months {
+ width: 100%;
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: var(--min-padding);
+}
+
+.years {
+ width: 100%;
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: var(--min-padding);
 }

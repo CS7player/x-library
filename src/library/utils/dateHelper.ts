@@ -74,7 +74,6 @@ export class DateHelper {
  static previousDate() {
   const date = new Date();
   date.setDate(date.getDate() - 1);
-
   return {
    year: date.getFullYear(),
    month: date.getMonth() + 1,
@@ -85,7 +84,6 @@ export class DateHelper {
  static futureDate() {
   const date = new Date();
   date.setDate(date.getDate() + 1);
-
   return {
    year: date.getFullYear(),
    month: date.getMonth() + 1,
@@ -99,22 +97,15 @@ export class DateHelper {
   return this.getDatesBetweenDates(start, end);
  }
 
- static getDatesBetweenDates(
-  start: Date,
-  end: Date,
-  weekDays: number[] = []
- ): DateInfo[] {
+ static getDatesBetweenDates(start: Date, end: Date, weekDays: number[] = []): DateInfo[] {
   const dates: DateInfo[] = [];
   const current = new Date(start);
-
   while (current <= end) {
    if (!weekDays.length || weekDays.includes(current.getDay())) {
     dates.push(this.getFormattedDtInfo(current));
    }
-
    current.setDate(current.getDate() + 1);
   }
-
   return dates;
  }
 
@@ -127,7 +118,6 @@ export class DateHelper {
 
  static getCurrentMonthFirstAndLastDate() {
   const now = new Date();
-
   return {
    firstDay: this.getYMD(new Date(now.getFullYear(), now.getMonth(), 1)),
    lastDay: this.getYMD(new Date(now.getFullYear(), now.getMonth() + 1, 0)),
@@ -136,35 +126,23 @@ export class DateHelper {
 
  static getTimeFormat(minutes: number): string {
   if (minutes == null) return "00:00";
-
   const hrs = Math.floor(minutes / 60);
   const mins = minutes % 60;
-
   return `${this.pad(hrs)}:${this.pad(mins)}`;
  }
 
- static getWeekWiseDates(
-  start: Date,
-  end: Date,
-  weekEndDay = 0
- ): Record<string, DateInfo[]> {
+ static getWeekWiseDates(start: Date, end: Date, weekEndDay = 0): Record<string, DateInfo[]> {
   const weeks: Record<string, DateInfo[]> = {};
   const current = new Date(start);
-
   let week = 1;
-
   while (current <= end) {
    const key = `week${week}`;
-
    (weeks[key] ??= []).push(this.getFormattedDtInfo(current));
-
    if (current.getDay() === weekEndDay) {
     week++;
    }
-
    current.setDate(current.getDate() + 1);
   }
-
   return weeks;
  }
 
@@ -172,9 +150,7 @@ export class DateHelper {
   const day = this.pad(date.getDate());
   const month = this.pad(date.getMonth() + 1);
   const year = date.getFullYear();
-
   const ymd = `${year}-${month}-${day}`;
-
   return {
    day: date.getDay(),
    dayName: this.singleLetterDays[date.getDay()],
@@ -189,4 +165,5 @@ export class DateHelper {
    year,
   };
  }
+
 }
