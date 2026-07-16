@@ -93,22 +93,20 @@ export default App;
 
 # 📚 Available Components
 
-| Component       | Status      |
-| --------------- | ----------- |
-| ✅ Button       | Stable      |
-| ✅ Text Field   | Stable      |
-| ✅ Checkbox     | Stable      |
-| ✅ Radio Button | Stable      |
-| ✅ Dropdown     | Stable      |
-| ✅ Switch       | Stable      |
-| ✅ Tooltip      | Stable      |
-| ✅ Time Picker  | Stable      |
-| ✅ Label Header | Stable      |
-| ✅ Alert        | Stable      |
-| ✅ Loader       | Stable      |
-| 🚧 Date Picker  | Coming Soon |
-| 🚧 Dialog       | Coming Soon |
-| 🚧 Autocomplete | Coming Soon |
+| Component       | Status |
+| --------------- | ------ |
+| ✅ Button       | Stable |
+| ✅ Text Field   | Stable |
+| ✅ Checkbox     | Stable |
+| ✅ Radio Button | Stable |
+| ✅ Dropdown     | Stable |
+| ✅ Switch       | Stable |
+| ✅ Tooltip      | Stable |
+| ✅ Time Picker  | Stable |
+| ✅ Alert        | Stable |
+| ✅ Loader       | Stable |
+| ✅ Date Picker  | Stable |
+| ✅ Dialog       | Stable |
 
 ---
 
