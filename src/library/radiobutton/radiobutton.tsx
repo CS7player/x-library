@@ -78,7 +78,7 @@ export function RadioButtonLib({ radiobutton, clickHandler }: RadioButtonPropert
     <LabelHeaderLib labelHeader={labelHeader} />
     <div className={styles.container}>
      {radiobuttonObj.array.map((ele) => (
-      <div key={String(ele[radiobuttonObj.options.valueKey])} className={`${styles.radiobuttonObj_container} ${radiobuttonObj.disabled ? styles.disabled : ''}`}>
+      <div key={String(ele[radiobuttonObj.options.valueKey])} className={`${styles.radiobutton_container} ${radiobuttonObj.disabled ? styles.disabled : ''}`}>
        <input
         type="radio"
         name={radiobuttonObj.label}

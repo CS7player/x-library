@@ -215,7 +215,7 @@ export function TimePickerLib({ timePicker }: TimePickerProperties) {
   <>
    <div className={styles.main}>
     <LabelHeaderLib labelHeader={labelHeader} />
-    <div className={styles.container}>
+    <div className={`${styles.container} ${timePickerObj.disabled ? styles.disabled : ''}`}>
      <div>{timeHtml}</div>
      <Icons.Clock />
     </div>

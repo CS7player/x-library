@@ -24,6 +24,10 @@
  box-sizing: border-box;
 }
 
+.container.disabled {
+ background-color: var(--bg-disabled);
+}
+
 .error_text {
  font-size: var(--content-size);
  font-weight: var(--content-weight);
