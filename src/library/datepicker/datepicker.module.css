@@ -53,7 +53,22 @@ input {
 }
 
 .calender.show {
- display: block;
+ display: flex;
+ flex-direction: column;
+ row-gap: var(--min-padding);
+}
+
+.box_header {
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ box-sizing: border-box;
+}
+
+.header_part {
+ display: flex;
+ column-gap: var(--min-padding);
 }
 
 .dates {
@@ -91,4 +106,8 @@ input {
  display: grid;
  grid-template-columns: repeat(3, 1fr);
  gap: var(--min-padding);
+}
+
+.active {
+ background-color: var(--bg-active);
 }

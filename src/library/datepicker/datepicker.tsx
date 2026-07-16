@@ -4,6 +4,7 @@ import { Icons } from '../';
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { Observable } from '../utils/observable';
 import { DateHelper } from '../utils/dateHelper';
+import { IconSize } from '../utils/icon';
 export class DatePicker extends Observable<DatePicker> {
  private _label: string = '';
  private _selectedDate: string = '';
@@ -45,11 +46,11 @@ export class DatePicker extends Observable<DatePicker> {
  }
 }
 
-const monthNames = [
+let monthNames = [
  { id: 1, name: 'Jan' },
  { id: 2, name: 'Feb' },
  { id: 3, name: 'Mar' },
- { id: 4, name: 'April' },
+ { id: 4, name: 'Apr' },
  { id: 5, name: 'May' },
  { id: 6, name: 'Jun' },
  { id: 7, name: 'Jul' },
@@ -59,8 +60,6 @@ const monthNames = [
  { id: 11, name: 'Nov' },
  { id: 12, name: 'Dec' },
 ];
-
-const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 interface DatePickerProperties {
  datepicker: DatePicker;
@@ -80,6 +79,7 @@ export function DatePickerLib({ datepicker }: DatePickerProperties) {
   }
   return {};
  };
+
  const prepareYearsList = (yr: any) => {
   var yearsArr = [];
   for (let index = 0; index < 12; index++) {
@@ -91,21 +91,12 @@ export function DatePickerLib({ datepicker }: DatePickerProperties) {
   }
   return yearsArr;
  };
- const getMonthDates = (month: any, year: any) => {
-  month = ('0' + month).slice(-2);
-  var firstDate = new Date(`${year + '-' + month + '-01'}T00:00:00Z`);
-  var lastDate = new Date(year, month, 0);
-  let diff = lastDate.getDate() + 1;
-  lastDate = new Date(lastDate.setDate(diff));
-  return DateHelper.getDatesBetweenDates(firstDate, lastDate);
- };
 
  let [calenderType, setCalenderType] = useState(1);
  let [isCalenderOpen, setCalenderOpen] = useState(false);
  let [calendarDates, setCalendarDates] = useState<any[]>([]);
  let [selectedMonth, setSelectedMonth] = useState(getMonth());
- let [yearsLoopList, setYearsLoopList] = useState<number[]>([]);
- let [monthDayStartIdx, setMonthDayStartIdx] = useState(0);
+ let [yearsList, setYearsList] = useState<number[]>([]);
  useEffect(() => {
   const date = parseDate(datepickerObj.selectedDate);
   if (date) {
@@ -114,14 +105,31 @@ export function DatePickerLib({ datepicker }: DatePickerProperties) {
    datepicker.setDisabled(true);
    datepickerObj.setValue('Invalid Date');
   }
- }, [datepicker.selectedDate]);
+ }, [datepickerObj.selectedDate]);
+
  const OpenCalender = () => {
   if (datepicker.disabled) return;
-  setCalenderOpen((isCalenderOpen = !isCalenderOpen));
+  setCalenderOpen((prev) => !prev);
   const ymd = DateHelper.convertDMYToYMD(datepickerObj.selectedDate);
-  setSelectedMonth(getMonth(new Date(ymd)));
-  setYearsLoopList(prepareYearsList(selectedMonth['year']));
-  setCalendarDates(getMonthDates(selectedMonth['id'], selectedMonth['year']));
+  const month = getMonth(new Date(ymd));
+  setSelectedMonth(month);
+  setYearsList(prepareYearsList(month.year));
+  monthNames.forEach((month: any) => {
+   month['year'] = month.year;
+  });
+  setCalendarDates(DateHelper.getMonthDates(month.id, month.year));
+ };
+
+ const toggleMonths = (monthObj: any) => {
+  setSelectedMonth(monthObj);
+  setYearsList(prepareYearsList(monthObj['year']));
+  setCalendarDates(DateHelper.getMonthDates(monthObj['id'], monthObj['year']));
+  setCalenderType(1);
+ };
+
+ const onDateSelected = (date: any) => {
+  datepickerObj.setValue(date['display_date_format']);
+  setCalenderOpen(false);
  };
 
  let labelHeader: LabelHeader = new LabelHeader(datepicker.label, datepicker.isMandatory, datepicker.infoText);
@@ -138,9 +146,19 @@ export function DatePickerLib({ datepicker }: DatePickerProperties) {
      {inputHtml}
     </div>
     <div className={`${styles.calender} ${isCalenderOpen ? styles.show : ''}`}>
-     {calenderType === 1 && <CalendarDays calendarDates={calendarDates} setCalenderType={setCalenderType} />}
-     {calenderType === 2 && <CalendarMonths setCalenderType={setCalenderType} />}
-     {calenderType === 3 && <CalendarYears yearsLoopList={yearsLoopList} setCalenderType={setCalenderType} />}
+     <CalendarHeader
+      calenderType={calenderType}
+      setCalenderType={setCalenderType}
+      selectedMonth={selectedMonth}
+      setSelectedMonth={setSelectedMonth}
+      toggleMonths={toggleMonths}
+      setYearsList={setYearsList}
+     />
+     {calenderType === 1 && <CalendarDays calendarDates={calendarDates} onDateSelected={onDateSelected} selectedDate={datepickerObj.selectedDate} />}
+     {calenderType === 2 && <CalendarMonths toggleMonths={toggleMonths} selectedMonth={selectedMonth} />}
+     {calenderType === 3 && (
+      <CalendarYears yearsLoopList={yearsList} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} setCalenderType={setCalenderType} />
+     )}
     </div>
    </div>
   </>
@@ -165,69 +183,162 @@ function formatDate(date: Date): string {
  return `${day}/${month}/${year}`;
 }
 
-function CalendarDays({ calendarDates, setCalenderType }: any) {
- // const firstDay = calendarDates?.[0]?.day;
- // console.log(firstDay['day']);
- // let day = firstdate['shortDayName'] || '';
- let monthDayStartIdx = dayNames.indexOf('Wed');
+function CalendarDays({ calendarDates, onDateSelected, selectedDate }: any) {
+ let endBoxHtml = null;
+ if (7 - ((calendarDates?.[0]?.day + calendarDates.length) % 7) != 7) {
+  endBoxHtml = Array.from({ length: 7 - ((calendarDates?.[0]?.day + calendarDates.length) % 7) }).map((_, index) => (
+   <div key={index} className={`${styles.box} ${styles.not_used}`}></div>
+  ));
+ }
+
  return (
   <>
-   <div>
-    <button onClick={() => setCalenderType(2)}>Months</button>
-    <div className={styles.dates}>
-     {dayNames.map((day) => {
-      return <div key={day}>{day}</div>;
-     })}
-     {Array.from({ length: calendarDates?.[0]?.day }).map((_, index) => (
-      <div key={index} className={`${styles.box} ${styles.not_used}`}></div>
-     ))}
-     {calendarDates.map((date: any) => {
-      return (
-       <div key={date.unix_date_format} className={styles.box}>
-        {date['format_day']}
-       </div>
-      );
-     })}
-    </div>
+   <div className={styles.dates}>
+    {DateHelper.weekDays.map((day) => {
+     return <div key={day}>{day}</div>;
+    })}
+    {Array.from({ length: calendarDates?.[0]?.day }).map((_, index) => (
+     <div key={index} className={`${styles.box} ${styles.not_used}`}></div>
+    ))}
+    {calendarDates.map((date: any) => {
+     return (
+      <div
+       key={date.unix_date_format}
+       className={`${styles.box} ${date['display_date_format'] == selectedDate ? styles.active : ''}`}
+       onClick={() => onDateSelected(date)}
+      >
+       {date['format_day']}
+      </div>
+     );
+    })}
+    {endBoxHtml}
    </div>
   </>
  );
 }
 
-function CalendarMonths({ setCalenderType }: any) {
+function CalendarMonths({ toggleMonths, selectedMonth }: any) {
  return (
   <>
-   <div>
-    <button onClick={() => setCalenderType(3)}>Years</button>
-    <div className={styles.months}>
-     {monthNames.map((month: any) => {
-      return (
-       <div key={month.id} className={styles.box}>
-        {month['name']}
-       </div>
-      );
-     })}
-    </div>
+   <div className={styles.months}>
+    {monthNames.map((month: any) => {
+     return (
+      <div key={month.id} className={`${styles.box} ${selectedMonth['id'] == month.id ? styles.active : ''}`} onClick={() => toggleMonths(month)}>
+       {month['name']}
+      </div>
+     );
+    })}
    </div>
   </>
  );
 }
 
-function CalendarYears({ yearsLoopList, setCalenderType }: any) {
+function CalendarYears({ yearsLoopList, selectedMonth, setSelectedMonth, setCalenderType }: any) {
+ const setYear = (year: number) => {
+  selectedMonth['year'] = year;
+  monthNames.forEach((month: any) => {
+   month['year'] = year;
+  });
+  setSelectedMonth(setSelectedMonth);
+  setCalenderType(2);
+ };
  return (
   <>
-   <div>
-    <button onClick={() => setCalenderType(1)}>Days</button>
-    <div className={styles.years}>
-     {yearsLoopList.map((year: any) => {
-      return (
-       <div key={year} className={styles.box}>
-        {year}
-       </div>
-      );
-     })}
-    </div>
+   <div className={styles.years}>
+    {yearsLoopList.map((year: any) => {
+     return (
+      <div key={year} className={`${styles.box} ${selectedMonth['year'] == year ? styles.active : ''}`} onClick={() => setYear(year)}>
+       {year}
+      </div>
+     );
+    })}
    </div>
   </>
  );
+}
+function CalendarHeader({ calenderType, setCalenderType, selectedMonth, setSelectedMonth, toggleMonths, setYearsList }: any) {
+ const changeMonths = (i: number) => {
+  let presentMonthId = selectedMonth['id'];
+  let destinationMonthId = presentMonthId + i;
+  if (destinationMonthId == 13) destinationMonthId = 1;
+  if (destinationMonthId == 0) destinationMonthId = 12;
+  let monthObj: any = monthNames.filter((month: any) => month.id == destinationMonthId)[0];
+  monthObj['year'] = selectedMonth['year'];
+  if (destinationMonthId == 1 && presentMonthId == 12) {
+   monthObj['year'] = selectedMonth['year'] + 1;
+  } else if (destinationMonthId == 12 && presentMonthId == 1) {
+   monthObj['year'] = selectedMonth['year'] - 1;
+  }
+  toggleMonths(monthObj);
+ };
+
+ const changeYear = (i: number) => {
+  selectedMonth['year'] = selectedMonth['year'] + i;
+  toggleMonths(selectedMonth);
+ };
+
+ const toggleYear = (i: number) => {
+  let yearArr: any = [];
+  let presentYear = selectedMonth['year'];
+  for (let index = 0; index < 12; index++) {
+   if (i == 1) {
+    yearArr.push(presentYear + (index + 7));
+   } else {
+    yearArr.unshift(presentYear - (6 + index));
+   }
+  }
+  selectedMonth['year'] = i == 1 ? selectedMonth['year'] + 12 : selectedMonth['year'] - 12;
+  setSelectedMonth(selectedMonth);
+  setYearsList(yearArr);
+ };
+
+ switch (calenderType) {
+  case 1:
+   return (
+    <div className={styles.box_header}>
+     <div className={styles.header_part}>
+      <button onClick={() => setCalenderType(2)}>{selectedMonth['name']}</button>
+      <button onClick={() => setCalenderType(3)}>{selectedMonth['year']}</button>
+     </div>
+     <div className={styles.header_part}>
+      <div onClick={() => changeMonths(-1)}>
+       <Icons.ChevronLeft size={IconSize.LG} />
+      </div>
+      <div onClick={() => changeMonths(1)}>
+       <Icons.ChevronRight size={IconSize.LG} />
+      </div>
+     </div>
+    </div>
+   );
+
+  case 2:
+   return (
+    <div className={styles.box_header}>
+     <button onClick={() => setCalenderType(3)}>{selectedMonth['year']}</button>
+     <div className={styles.header_part}>
+      <div onClick={() => changeYear(-1)}>
+       <Icons.ChevronLeft size={IconSize.LG} />
+      </div>
+      <div onClick={() => changeYear(1)}>
+       <Icons.ChevronRight size={IconSize.LG} />
+      </div>
+     </div>
+    </div>
+   );
+
+  case 3:
+   return (
+    <div className={styles.box_header}>
+     <div onClick={() => toggleYear(-1)}>
+      <Icons.ChevronLeft size={IconSize.LG} />
+     </div>
+     <div onClick={() => toggleYear(1)}>
+      <Icons.ChevronRight size={IconSize.LG} />
+     </div>
+    </div>
+   );
+
+  default:
+   return null;
+ }
 }

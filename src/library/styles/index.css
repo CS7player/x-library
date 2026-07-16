@@ -11,7 +11,8 @@
  --content-weight: 400;
  --min-padding: 0.2rem;
  --border-radius: 0.2rem;
+ --bg-active: #8a9ac7;
 
  --success-color: #2cca46;
- --danger-color: #e42b2b;
+ --danger-color: #e43d3d;
 }

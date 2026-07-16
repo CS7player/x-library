@@ -1,8 +1,6 @@
 export interface DateInfo {
  day: number;
- dayName: string;
  shortDayName: string;
- fullDayName: string;
  unix_date_format: string;
  display_date_format: string;
  display_dt_format: string;
@@ -13,21 +11,7 @@ export interface DateInfo {
 }
 
 export class DateHelper {
- static readonly singleLetterDays = ["S", "M", "T", "W", "T", "F", "S"];
  static readonly weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
- static readonly fullWeekDays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
- ];
-
- private static pad(value: number): string {
-  return value.toString().padStart(2, "0");
- }
 
  static getDay(date: string): string {
   return date.split("-")[2];
@@ -50,15 +34,15 @@ export class DateHelper {
  }
 
  static getYMD(date = new Date()): string {
-  return `${date.getFullYear()}-${this.pad(date.getMonth() + 1)}-${this.pad(date.getDate())}`;
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
  }
 
  static getDMY(date = new Date()): string {
-  return `${this.pad(date.getDate())}/${this.pad(date.getMonth() + 1)}/${date.getFullYear()}`;
+  return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
  }
 
  static getHMS(date = new Date()): string {
-  return `${this.pad(date.getHours())}:${this.pad(date.getMinutes())}:${this.pad(date.getSeconds())}`;
+  return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
  }
 
  static convertDMYToYMD(date: string): string {
@@ -109,53 +93,14 @@ export class DateHelper {
   return dates;
  }
 
- static getFirstDayAndLastDateOfMonth(month: number, year: number) {
-  return {
-   start_date: this.getYMD(new Date(year, month - 1, 1)),
-   end_date: this.getYMD(new Date(year, month, 0)),
-  };
- }
-
- static getCurrentMonthFirstAndLastDate() {
-  const now = new Date();
-  return {
-   firstDay: this.getYMD(new Date(now.getFullYear(), now.getMonth(), 1)),
-   lastDay: this.getYMD(new Date(now.getFullYear(), now.getMonth() + 1, 0)),
-  };
- }
-
- static getTimeFormat(minutes: number): string {
-  if (minutes == null) return "00:00";
-  const hrs = Math.floor(minutes / 60);
-  const mins = minutes % 60;
-  return `${this.pad(hrs)}:${this.pad(mins)}`;
- }
-
- static getWeekWiseDates(start: Date, end: Date, weekEndDay = 0): Record<string, DateInfo[]> {
-  const weeks: Record<string, DateInfo[]> = {};
-  const current = new Date(start);
-  let week = 1;
-  while (current <= end) {
-   const key = `week${week}`;
-   (weeks[key] ??= []).push(this.getFormattedDtInfo(current));
-   if (current.getDay() === weekEndDay) {
-    week++;
-   }
-   current.setDate(current.getDate() + 1);
-  }
-  return weeks;
- }
-
  static getFormattedDtInfo(date = new Date()): DateInfo {
-  const day = this.pad(date.getDate());
-  const month = this.pad(date.getMonth() + 1);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
   const ymd = `${year}-${month}-${day}`;
   return {
    day: date.getDay(),
-   dayName: this.singleLetterDays[date.getDay()],
    shortDayName: this.weekDays[date.getDay()],
-   fullDayName: this.fullWeekDays[date.getDay()],
    unix_date_format: ymd,
    display_date_format: `${day}/${month}/${year}`,
    display_dt_format: `${day}/${month}/${year}`,

@@ -53,7 +53,6 @@ export function AlertBoxLib() {
    {alertBox.alertArray.map((ele, index) => (
     <div key={index} className={styles.alert_box}>
      <div>{ele.text}</div>
-
      <div className={styles.closer} onClick={() => alertBox.remove(index)}>
       <Icons.Trash />
      </div>

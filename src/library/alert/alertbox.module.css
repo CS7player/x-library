@@ -16,7 +16,8 @@
  font-size: var(--label-size);
  font-weight: var(--label-weight);
  border: 1px solid var(--border-color);
- background-color: red;
+ background-color: var(--danger-color);
+ border-left: 4px solid rgb(163, 1, 1);
  border-radius: 10px;
  box-sizing: border-box;
  position: relative;
