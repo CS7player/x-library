@@ -1,9 +1,9 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
- title: 'React Library',
+ title: 'React UI Library',
  description: 'Observable React UI Components',
-
+ head: [['link', { rel: 'icon', type: 'image/png', href: '/x-library/alien.png' }]],
  base: '/x-library/',
 
  themeConfig: {
